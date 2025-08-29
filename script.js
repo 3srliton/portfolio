@@ -58,7 +58,7 @@
 
         // Add typing effect to hero text
         const heroTitle = document.querySelector('.hero-text h1');
-        const titleText = 'MD LITON ALI';
+        const titleText = 'Tanvia Anjuman Siddiq';
         heroTitle.innerHTML = '';
         
         let i = 0;
