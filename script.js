@@ -1,155 +1,120 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+document.addEventListener('DOMContentLoaded', () => {
+  /* ---------- Smooth scrolling for navigation links ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
-});
+  });
 
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
+  /* ---------- Scroll animations ---------- */
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-}, observerOptions);
+  }, observerOptions);
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Observe all fade-in elements
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
+  /* ---------- Navbar background change on scroll ---------- */
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    const setNavBg = () => {
+      navbar.style.background = window.scrollY > 100
+        ? 'rgba(44, 62, 80, 0.98)'
+        : 'rgba(44, 62, 80, 0.95)';
+    };
+    setNavBg(); // set initial
+    window.addEventListener('scroll', setNavBg, { passive: true });
+  }
 
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(44, 62, 80, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(44, 62, 80, 0.95)';
-    }
-});
+  /* ---------- Mobile menu toggle ---------- */
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const navMenu = document.querySelector('.nav-links');
+  if (mobileMenu && navMenu) {
+    mobileMenu.addEventListener('click', () => navMenu.classList.toggle('active'));
+  }
 
-// Mobile menu toggle
-const mobileMenu = document.querySelector('.mobile-menu');
-const navMenu = document.querySelector('.nav-links');
+  /* ---------- CONTACT FORM → Google Sheets ---------- */
+  const form = document.getElementById('contact-form');
+  if (form) {
+    const submitBtn = form.querySelector('.btn-submit');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxAYX9EO5mJ8hztT2YjeEGUvlkwKGh1eOkT4A0ZyjYB3Lc37HtEc7QFY_b3qYvMs3Jg/exec';
 
-mobileMenu.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
 
-// ---------- UPDATED CONTACT FORM SUBMISSION ----------
-const form = document.querySelector('.contact-form form');
-if (form) {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwgO6vOhqMQRFGCArxsLNzzMJcdIMr_Cxd9hvpuzmlJaOUaKeL8DUjKtaMTaSyPGw_Gfg/exec";
+      // Honeypot
+      if (form.website && form.website.value.trim() !== '') {
+        form.reset();
+        return;
+      }
 
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
+      const data = {
+        name: form.name?.value?.trim() || '',
+        email: form.email?.value?.trim() || '',
+        organization: form.organization?.value?.trim() || '',
+        subject: form.subject?.value?.trim() || '',
+        message: form.message?.value?.trim() || '',
+        website: form.website?.value || ''
+      };
 
-        // Honeypot check (if exists)
-        if (form.website && form.website.value.trim() !== "") {
-            console.warn("Spam submission blocked.");
-            return;
+      if (!data.name || !data.email || !data.subject || !data.message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      let originalHTML = '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      }
+
+      try {
+        const res = await fetch(scriptURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams(data)
+        });
+
+        // Expect JSON from your Apps Script
+        const result = await res.json().catch(() => ({ ok: false }));
+        if (result && result.ok) {
+          form.reset();
+          alert('✅ Message sent successfully!');
+        } else {
+          throw new Error(result?.error || 'Unknown error');
         }
-
-        // Basic browser validation
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalBtn = submitBtn ? submitBtn.innerHTML : 'Send';
+      } catch (err) {
+        console.error(err);
+        alert('❌ There was a problem sending your message. Please try again later.');
+      } finally {
         if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = "Sending...";
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalHTML;
         }
-
-        try {
-            // Build application/x-www-form-urlencoded body
-            const fd = new FormData(form);
-            const params = new URLSearchParams();
-            for (const pair of fd.entries()) {
-                // skip honeypot field if present
-                if (pair[0] === 'website') continue;
-                params.append(pair[0], pair[1]);
-            }
-
-            const resp = await fetch(SCRIPT_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-                    "Accept": "application/json, text/plain, */*"
-                },
-                body: params.toString()
-            });
-
-            // Read raw text and try to parse JSON (some Apps Script responses may be plain text)
-            const text = await resp.text();
-            let json = null;
-            try {
-                json = JSON.parse(text);
-            } catch (parseErr) {
-                // not JSON — keep text for debugging
-            }
-
-            console.log('Form submission response status:', resp.status, resp.statusText);
-            console.log('Form submission response body:', text);
-
-            // Determine success using multiple possible response shapes
-            const okByHttp = resp.ok;
-            const okByJson =
-                (json && ((json.status && json.status.toLowerCase() === 'ok') ||
-                          (json.status && json.status.toLowerCase() === 'success') ||
-                          (json.result && json.result.toLowerCase() === 'success') ||
-                          (json.result && json.result.toLowerCase() === 'ok')));
-
-            if (!okByHttp && !okByJson) {
-                // Pick server-provided message if available
-                const serverMsg = (json && (json.message || json.detail || json.error)) || text || `Server returned ${resp.status}`;
-                throw new Error(serverMsg);
-            }
-
-            // Success
-            form.reset();
-            const successMessage = (json && (json.message || 'Thank you! Your message has been sent.')) || 'Thank you! Your message has been sent.';
-            alert(successMessage);
-        } catch (err) {
-            console.error('Contact form submission error:', err);
-            alert('Sorry, something went wrong. Please try again later.\n' + (err && err.message ? err.message : ''));
-        } finally {
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtn;
-            }
-        }
+      }
     });
-}
-// ---------- END CONTACT FORM SUBMISSION ----------
+  }
 
-// Add typing effect to hero text
-const heroTitle = document.querySelector('.hero-text h1');
-const titleText = 'MD LITON ALI';
-heroTitle.innerHTML = '';
-
-let i = 0;
-const typeWriter = () => {
-    if (i < titleText.length) {
-        heroTitle.innerHTML += titleText.charAt(i);
-        i++;
+  /* ---------- Typing effect to hero text ---------- */
+  const heroTitle = document.querySelector('.hero-text h1');
+  const titleText = 'MD LITON ALI';
+  if (heroTitle) {
+    heroTitle.textContent = '';
+    let i = 0;
+    const typeWriter = () => {
+      if (i < titleText.length) {
+        heroTitle.textContent += titleText.charAt(i++);
         setTimeout(typeWriter, 100);
-    }
-};
-
-setTimeout(typeWriter, 1000);
+      }
+    };
+    setTimeout(typeWriter, 1000);
+  }
+});
