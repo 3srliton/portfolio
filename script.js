@@ -63,6 +63,12 @@ if (form) {
             return;
         }
 
+        // Basic browser validation
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalBtn = submitBtn ? submitBtn.innerHTML : 'Send';
         if (submitBtn) {
@@ -71,25 +77,57 @@ if (form) {
         }
 
         try {
+            // Build application/x-www-form-urlencoded body
             const fd = new FormData(form);
-            const params = new URLSearchParams(fd);
+            const params = new URLSearchParams();
+            for (const pair of fd.entries()) {
+                // skip honeypot field if present
+                if (pair[0] === 'website') continue;
+                params.append(pair[0], pair[1]);
+            }
 
             const resp = await fetch(SCRIPT_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-                    "Accept": "application/json"
+                    "Accept": "application/json, text/plain, */*"
                 },
                 body: params.toString()
             });
 
-            if (!resp.ok) throw new Error("Network error");
+            // Read raw text and try to parse JSON (some Apps Script responses may be plain text)
+            const text = await resp.text();
+            let json = null;
+            try {
+                json = JSON.parse(text);
+            } catch (parseErr) {
+                // not JSON — keep text for debugging
+            }
 
+            console.log('Form submission response status:', resp.status, resp.statusText);
+            console.log('Form submission response body:', text);
+
+            // Determine success using multiple possible response shapes
+            const okByHttp = resp.ok;
+            const okByJson =
+                (json && ((json.status && json.status.toLowerCase() === 'ok') ||
+                          (json.status && json.status.toLowerCase() === 'success') ||
+                          (json.result && json.result.toLowerCase() === 'success') ||
+                          (json.result && json.result.toLowerCase() === 'ok')));
+
+            if (!okByHttp && !okByJson) {
+                // Pick server-provided message if available
+                const serverMsg = (json && (json.message || json.detail || json.error)) || text || `Server returned ${resp.status}`;
+                throw new Error(serverMsg);
+            }
+
+            // Success
             form.reset();
-            alert("Thank you! Your message has been sent.");
+            const successMessage = (json && (json.message || 'Thank you! Your message has been sent.')) || 'Thank you! Your message has been sent.';
+            alert(successMessage);
         } catch (err) {
-            console.error(err);
-            alert("Sorry, something went wrong. Please try again later.");
+            console.error('Contact form submission error:', err);
+            alert('Sorry, something went wrong. Please try again later.\n' + (err && err.message ? err.message : ''));
         } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
