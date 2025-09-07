@@ -52,7 +52,7 @@ mobileMenu.addEventListener('click', () => {
 // ---------- UPDATED CONTACT FORM SUBMISSION ----------
 const form = document.querySelector('.contact-form form');
 if (form) {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyGpKL0GFU4ljZFN3Ga08Qlnb1uYP88sj-eT4J1UYfNvLfsRor27UxAjs_K1L-fuUiYlw/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwgO6vOhqMQRFGCArxsLNzzMJcdIMr_Cxd9hvpuzmlJaOUaKeL8DUjKtaMTaSyPGw_Gfg/exec";
 
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
