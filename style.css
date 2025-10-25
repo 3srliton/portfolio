@@ -220,10 +220,10 @@
 
         /* About Section */
         .about-content {
-            align-items: start;
+            align: justify;
         }
 
-        .research-summary {
+        .p {
             font-size: 1.1rem;
             line-height: 1.8;
         }
