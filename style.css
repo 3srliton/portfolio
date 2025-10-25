@@ -220,41 +220,7 @@
 
         /* About Section */
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
             align-items: start;
-        }
-
-        .research-interests {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .research-interests h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .interests-list {
-            list-style: none;
-        }
-
-        .interests-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .interests-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
         }
 
         .research-summary {
