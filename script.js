@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Smooth scrolling for nav links
+  /* ---------- Smooth scrolling for navigation links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const href = anchor.getAttribute('href');
@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  // Fade-in animations
+
+  /* ---------- Scroll animations ---------- */
   const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -19,60 +20,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  // Navbar background change + shadow on scroll
+
+  /* ---------- Navbar background change on scroll ---------- */
   const navbar = document.querySelector('.navbar');
   if (navbar) {
     const setNavBg = () => {
-      navbar.style.background = window.scrollY > 100
-        ? 'rgba(183,28,28,0.98)'
-        : 'rgba(183,28,28,0.95)';
-      navbar.style.boxShadow = window.scrollY > 60
-        ? '0 4px 18px rgba(183,28,28,0.13)'
-        : 'none';
+      navbar.style.background = window.scrollY > 50
+        ? 'rgba(196, 30, 58, 1)'
+        : 'rgba(196, 30, 58, 0.98)';
     };
     setNavBg();
     window.addEventListener('scroll', setNavBg, { passive: true });
   }
-  // Mobile menu toggle
+
+  /* ---------- Mobile menu toggle ---------- */
   const mobileMenu = document.querySelector('.mobile-menu');
   const navMenu = document.querySelector('.nav-links');
   if (mobileMenu && navMenu) {
     mobileMenu.addEventListener('click', () => navMenu.classList.toggle('active'));
+    
+    // Close mobile menu when clicking nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navMenu.classList.remove('active'));
+    });
   }
-  // Contact form handler (same as before)
+
+  /* ---------- CONTACT FORM → Google Sheets ---------- */
   const form = document.getElementById('contact-form');
   if (form) {
     const submitBtn = form.querySelector('.btn-submit');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxAYX9EO5mJ8hztT2YjeEGUvlkwKGh1eOkT4A0ZyjYB3Lc37HtEc7QFY_b3qYvMs3Jg/exec';
+
     form.addEventListener('submit', async e => {
       e.preventDefault();
+
+      // Honeypot
       if (form.website && form.website.value.trim() !== '') {
         form.reset();
         return;
       }
+
       const data = {
         name: form.name?.value?.trim() || '',
         email: form.email?.value?.trim() || '',
+        organization: form.organization?.value?.trim() || '',
         subject: form.subject?.value?.trim() || '',
         message: form.message?.value?.trim() || '',
         website: form.website?.value || ''
       };
+
       if (!data.name || !data.email || !data.subject || !data.message) {
         alert('Please fill in all required fields.');
         return;
       }
+
       let originalHTML = '';
       if (submitBtn) {
         submitBtn.disabled = true;
         originalHTML = submitBtn.innerHTML;
-        submitBtn.innerHTML = ' Sending...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
       }
+
       try {
-        // Send to Google Apps Script or your backend here
-        await new Promise(r => setTimeout(r, 1000));
-        form.reset();
-        alert('✅ Message sent successfully!');
+        const res = await fetch(scriptURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams(data)
+        });
+
+        const result = await res.json().catch(() => ({ ok: false }));
+        if (result && result.ok) {
+          form.reset();
+          alert('✅ Message sent successfully! I will get back to you soon.');
+        } else {
+          throw new Error(result?.error || 'Unknown error');
+        }
       } catch (err) {
-        alert('❌ There was a problem sending your message. Please try again later.');
+        console.error(err);
+        alert('❌ There was a problem sending your message. Please try again later or email directly.');
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -81,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  // Optional: Typing effect to hero text
+
+  /* ---------- Typing effect for hero text ---------- */
   const heroTitle = document.querySelector('.hero-text h1');
   const titleText = 'MD LITON ALI';
   if (heroTitle) {
