@@ -241,22 +241,170 @@ body {
     background: var(--teal);
 }
 
-/* About Section - Compact */
+/* About Section - Redesigned with Infographics */
 .about-content {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    background: var(--bg-white);
+}
+
+.about-intro {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 100%);
     padding: 2rem;
     border-radius: 12px;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.about-intro p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
     box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--teal);
+}
+
+.stat-card:nth-child(2) {
+    border-top-color: var(--purple);
+}
+
+.stat-card:nth-child(3) {
+    border-top-color: var(--orange);
+}
+
+.stat-card:nth-child(4) {
+    border-top-color: var(--emerald);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--teal);
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    color: var(--purple);
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    color: var(--orange);
+}
+
+.stat-card:nth-child(4) .stat-icon {
+    color: var(--emerald);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.highlight-card {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
     border-left: 4px solid var(--teal);
 }
 
-.about-content p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    text-align: justify;
+.highlight-card:nth-child(2) {
+    border-left-color: var(--purple);
+}
+
+.highlight-card:nth-child(3) {
+    border-left-color: var(--orange);
+}
+
+.highlight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.highlight-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.highlight-card h3 i {
+    color: var(--teal);
+}
+
+.highlight-card:nth-child(2) h3 i {
+    color: var(--purple);
+}
+
+.highlight-card:nth-child(3) h3 i {
+    color: var(--orange);
+}
+
+.highlight-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-card li {
+    padding: 0.5rem 0;
     color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.highlight-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: bold;
+}
+
+.highlight-card:nth-child(2) li::before {
+    color: var(--purple);
+}
+
+.highlight-card:nth-child(3) li::before {
+    color: var(--orange);
 }
 
 /* Skills Section */
@@ -309,20 +457,24 @@ body {
 }
 
 .skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.8rem;
 }
 
 .skill-tag {
     background: var(--bg-light);
     color: var(--text-primary);
-    padding: 0.5rem 0.9rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
     border: 1px solid var(--border-light);
     transition: all 0.3s ease;
     font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .skill-tag:hover {
@@ -330,6 +482,7 @@ body {
     color: white;
     border-color: var(--teal);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Education Section */
@@ -341,7 +494,7 @@ body {
 }
 
 .education-item {
-    background: linear-gradient(135deg, var(--purple) 0%, #6366f1 100%);
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     padding: 1.8rem;
     border-radius: 12px;
     color: white;
@@ -365,11 +518,11 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.08);
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 50%;
-    transform: translate(30px, -30px);
+    transform: translate(50px, -50px);
 }
 
 .education-content {
@@ -565,6 +718,18 @@ body {
     box-shadow: 0 0 0 4px var(--bg-white);
 }
 
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.experience-title-group {
+    flex: 1;
+}
+
 .job-title {
     font-size: 1.2rem;
     color: var(--text-primary);
@@ -575,19 +740,20 @@ body {
 .company {
     color: var(--teal);
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     font-size: 0.95rem;
 }
 
 .period {
     background: var(--amber);
     color: white;
-    padding: 0.3rem 0.9rem;
-    border-radius: 15px;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     display: inline-block;
     font-size: 0.85rem;
-    margin-bottom: 1rem;
     font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .job-description ul {
@@ -990,6 +1156,14 @@ body {
         width: 240px;
         height: 240px;
     }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1048,6 +1222,10 @@ body {
         margin-bottom: 2rem;
     }
 
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
@@ -1087,6 +1265,15 @@ body {
         left: -1.85rem;
     }
 
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .period {
+        align-self: flex-start;
+    }
+
     .social-links {
         justify-content: center;
     }
@@ -1119,5 +1306,13 @@ body {
     .contact-info,
     .contact-form {
         padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
     }
 }
