@@ -548,45 +548,51 @@
                 </div>
                 
                 <div class="contact-form">
-  <h3>Send Message</h3>
+                        <h3>Send Message</h3>
 
-  <!-- NOTE: add id so JS can find the form -->
-  <form id="contact-form" novalidate>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="name">Full Name *</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-    </div>
+                        <!-- NOTE: add id so JS can find the form -->
+                        <form id="contact-form" 
+                            action="https://docs.google.com/forms/d/e/1FAIpQLSfkT1NgvLnBqE4XNWd2yel5vrFKq-_nvVuEOxQSAV6gek_GIg/formResponse" 
+                            method="POST" 
+                            target="_self" 
+                            novalidate>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" name="entry.46496394" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="entry.762992029" required>
+                                </div>
+                            </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="organization">Organization/Institution</label>
-        <input type="text" id="organization" name="organization">
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject *</label>
-        <input type="text" id="subject" name="subject">
-      </div>
-    </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="organization">Organization/Institution</label>
+                                    <input type="text" id="organization" name="entry.1775075474">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject *</label>
+                                    <input type="text" id="subject" name="entry.2054331517" required>
+                                </div>
+                            </div>
 
-    <div class="form-group">
-      <label for="message">Message *</label>
-      <textarea id="message" name="message" placeholder="Please describe your project, collaboration idea, or inquiry in detail..." required></textarea>
-    </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="entry.798017360" required placeholder="Please describe your project, collaboration idea, or inquiry in detail..."></textarea>
+                            </div>
 
-    <!-- Honeypot (hidden) - bots will fill this and we ignore such submissions -->
-    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+                            <!-- Honeypot (hidden) -->
+                            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
 
-    <button type="submit" class="btn-submit">
-      <i class="fas fa-paper-plane"></i> Send Message
-    </button>
-  </form>
-</div>
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+
+                </div>
 
             </div>
         </div>
