@@ -44,68 +44,76 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => navMenu.classList.remove('active'));
     });
   }
+/* ---------- CONTACT FORM → Google Form ---------- */
+const form = document.getElementById('contact-form');
+if (form) {
+  const submitBtn = form.querySelector('.btn-submit');
 
-  /* ---------- CONTACT FORM → Google Sheets ---------- */
-  const form = document.getElementById('contact-form');
-  if (form) {
-    const submitBtn = form.querySelector('.btn-submit');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxAYX9EO5mJ8hztT2YjeEGUvlkwKGh1eOkT4A0ZyjYB3Lc37HtEc7QFY_b3qYvMs3Jg/exec';
+  // ✅ Google Form "formResponse" URL
+  const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSfkT1NgvLnBqE4XNWd2yel5vrFKq-_nvVuEOxQSAV6gek_GIg/formResponse';
 
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      // Honeypot
-      if (form.website && form.website.value.trim() !== '') {
-        form.reset();
-        return;
-      }
+    // 🕵️ Honeypot spam check
+    if (form.website && form.website.value.trim() !== '') {
+      form.reset();
+      return;
+    }
 
-      const data = {
-        name: form.name?.value?.trim() || '',
-        email: form.email?.value?.trim() || '',
-        organization: form.organization?.value?.trim() || '',
-        subject: form.subject?.value?.trim() || '',
-        message: form.message?.value?.trim() || '',
-        website: form.website?.value || ''
-      };
+    // Gather data from form fields
+    const data = {
+      'entry.46496394': form.name?.value?.trim() || '',          // Name
+      'entry.762992029': form.email?.value?.trim() || '',        // Email
+      'entry.1775075474': form.organization?.value?.trim() || '',// Organization
+      'entry.2054331517': form.subject?.value?.trim() || '',     // Subject
+      'entry.798017360': form.message?.value?.trim() || ''       // Message
+    };
 
-      if (!data.name || !data.email || !data.subject || !data.message) {
-        alert('Please fill in all required fields.');
-        return;
-      }
+    // Required field validation
+    if (!data['entry.46496394'] || !data['entry.762992029'] || !data['entry.2054331517'] || !data['entry.798017360']) {
+      alert('⚠️ Please fill in all required fields.');
+      return;
+    }
 
-      let originalHTML = '';
+    // Disable button + show spinner
+    let originalHTML = '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    }
+
+    try {
+      // Send data as FormData
+      const formData = new FormData();
+      for (const key in data) formData.append(key, data[key]);
+
+      // Google Forms requires POST to "formResponse"
+      await fetch(googleFormURL, {
+        method: 'POST',
+        mode: 'no-cors', // avoids CORS issues
+        body: formData
+      });
+
+      // Reset form and show success message
+      form.reset();
+      alert('✅ Message sent successfully! I will get back to you soon.');
+
+    } catch (err) {
+      console.error(err);
+      alert('❌ There was a problem sending your message. Please try again later.');
+    } finally {
+      // Re-enable button
       if (submitBtn) {
-        submitBtn.disabled = true;
-        originalHTML = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
       }
+    }
+  });
+}
 
-      try {
-        const res = await fetch(scriptURL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: new URLSearchParams(data)
-        });
 
-        const result = await res.json().catch(() => ({ ok: false }));
-        if (result && result.ok) {
-          form.reset();
-          alert('✅ Message sent successfully! I will get back to you soon.');
-        } else {
-          throw new Error(result?.error || 'Unknown error');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('❌ There was a problem sending your message. Please try again later or email directly.');
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalHTML;
-        }
-      }
-    });
-  }
 
   /* ---------- Typing effect for hero text ---------- */
   const heroTitle = document.querySelector('.hero-text h1');
