@@ -489,7 +489,7 @@ body {
 .education-grid {
     display: grid;
     gap: 1.3rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -590,7 +590,7 @@ body {
 .publications-grid {
     display: grid;
     gap: 1.3rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -682,7 +682,7 @@ body {
 .experience-timeline {
     position: relative;
     padding-left: 1.5rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
