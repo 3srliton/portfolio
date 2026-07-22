@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD LITON ALI</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
 
@@ -23,9 +26,12 @@
                 <li><a href="#education">Education</a></li>                
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#awards">Awards</a></li>
+                <li><a href="#milestones">Milestones</a></li>
                 <li><a href="#training">Training</a></li>
                 <li><a href="#memberships">Memberships</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="mobile-menu">
@@ -38,9 +44,14 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-text">
+                <div class="hero-badge"><span class="dot"></span> PhD Student — University of Arizona</div>
                 <h1>MD LITON ALI</h1>
                 <p class="subtitle">Information Science Researcher & Digital Library Specialist</p>
-                <p>Combating misinformation in health informatics and social media through innovative research in information behavior and knowledge management systems.</p>
+                <p>Pursuing a PhD in Information Science at the University of Arizona, building on five-plus years of library automation and digital service work at IUT to research misinformation, health informatics, and knowledge management systems.</p>
+                <div class="hero-cta">
+                    <a href="#publications" class="btn-primary">View Publications <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn-outline">Contact</a>
+                </div>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/3srliton/" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a href="https://scholar.google.com/citations?user=ygCGG80AAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i></a>
@@ -59,63 +70,130 @@
 <!-- About Section -->
 <section id="about" class="section">
     <div class="container">
+        <span class="eyebrow fade-in">Profile</span>
         <h2 class="section-title fade-in">About Me</h2>
         <div class="about-content fade-in">
-            <!-- Intro Card -->
-            <div class="about-intro">
-                <p>Mohammed Liton Ali is a Bangladeshi information professional serving as Assistant Cataloguer at Islamic University of Technology (IUT) and Liaison Officer at the university's International Affairs Office. He specializes in digital library systems, cataloguing operations, and global academic partnerships while supporting international students with comprehensive integration services.</p>
+
+            <!-- Bio Panel: text + quick-facts rail, full width -->
+            <div class="bio-panel">
+                <div class="bio-text">
+                    <span class="manuscript-tag">LIS 020.92 — ALI, M. L.</span>
+                    <p class="lead">Md. Liton Ali is an Information Science researcher and <strong>PhD student at the University of Arizona</strong>, dedicated to modernizing information access and transforming library ecosystems. Starting from his university days, he has spent nearly a decade working across <strong>more than 15 library and information institutions</strong> in Bangladesh, bridging traditional information management with cutting-edge digital and AI-driven frameworks.</p>
+                    <p>He built much of this foundation at the <strong>Islamic University of Technology (IUT)</strong>, serving as Assistant Cataloguer and Liaison Officer for the International Affairs Office — deploying Koha-ILS, digitizing patron onboarding, streamlining cataloging workflows, and supporting international students through every stage of their integration.</p>
+                    <p>He holds a Master of Arts in Information Science and Library Management from the University of Dhaka (CGPA 3.97/4.00), graduating with the Md. Shahidullah Memorial Gold Medal, the Dean's Award of Honour, and the Provost Award of Excellence. His doctoral research builds on this record, extending into health misinformation and knowledge management, and continuing the zero-budget digital library framework he leads for resource-constrained school and college libraries across Bangladesh — work recognized with the Best Paper Award at IIKM 2025.</p>
+                    <p class="about-location">📍 University of Arizona, Tucson, USA</p>
+                </div>
+                <div class="fact-rail">
+                    <div class="fact-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <div>
+                            <span class="fact-value">PhD Student</span>
+                            <span class="fact-label">University of Arizona</span>
+                        </div>
+                    </div>
+                    <div class="fact-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <span class="fact-value">10 Years</span>
+                            <span class="fact-label">Library &amp; Information Science</span>
+                        </div>
+                    </div>
+                    <div class="fact-item">
+                        <i class="fas fa-building-columns"></i>
+                        <div>
+                            <span class="fact-value">15+ Institutions</span>
+                            <span class="fact-label">Libraries Served Nationwide</span>
+                        </div>
+                    </div>
+                    <div class="fact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <span class="fact-value">Chair-Elect</span>
+                            <span class="fact-label">ASIS&amp;T SIG-AVC (2025–2026)</span>
+                        </div>
+                    </div>
+                    <div class="fact-item">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <span class="fact-value">15+</span>
+                            <span class="fact-label">Awards &amp; Honors</span>
+                        </div>
+                    </div>
+                    <div class="fact-item">
+                        <i class="fas fa-book-open"></i>
+                        <div>
+                            <span class="fact-value">4+</span>
+                            <span class="fact-label">Publications</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Stats Cards -->
-            <div class="about-stats">
-                <div class="stat-card">
-                    <div class="stat-icon">📚</div>
-                    <div class="stat-number">40K+</div>
-                    <div class="stat-label">Resources Managed</div>
+            <!-- Stats: Ledger Bar -->
+            <div class="ledger-bar">
+                <div class="ledger-item">
+                    <span class="ledger-value">100K+</span>
+                    <span class="ledger-label">Resources Managed</span>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Awards & Honors</div>
+                <span class="ledger-divider"></span>
+                <div class="ledger-item">
+                    <span class="ledger-value">15+</span>
+                    <span class="ledger-label">Awards &amp; Honors</span>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">📖</div>
-                    <div class="stat-number">4+</div>
-                    <div class="stat-label">Publications</div>
+                <span class="ledger-divider"></span>
+                <div class="ledger-item">
+                    <span class="ledger-value">4+</span>
+                    <span class="ledger-label">Publications</span>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🎓</div>
-                    <div class="stat-number">3.97</div>
-                    <div class="stat-label">Masters CGPA</div>
+                <span class="ledger-divider"></span>
+                <div class="ledger-item">
+                    <span class="ledger-value">3.97</span>
+                    <span class="ledger-label">Masters CGPA</span>
                 </div>
             </div>
 
-            <!-- Highlights -->
-            <div class="about-highlights">
-                <div class="highlight-card">
-                    <h3><i class="fas fa-graduation-cap"></i> Academic Excellence</h3>
+            <!-- Highlights: Fanned Index Cards -->
+            <div class="catalog-stack">
+                <div class="catalog-card catalog-card--featured">
+                    <span class="catalog-index">01/04</span>
+                    <div class="catalog-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>PhD Researcher</h3>
+                    <ul>
+                        <li>PhD in Information Science, University of Arizona</li>
+                        <li>Researching health misinformation and knowledge management</li>
+                        <li>Extending doctoral-level inquiry into library practice</li>
+                    </ul>
+                </div>
+                <div class="catalog-card">
+                    <span class="catalog-index">02/04</span>
+                    <div class="catalog-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Academic Excellence</h3>
                     <ul>
                         <li>Masters & Bachelor's in Information Science from University of Dhaka</li>
                         <li>Mohammad Shahidullah Memorial Gold Medal recipient</li>
-                        <li>Dean's Awards of Honour for both degrees</li>
+                        <li>Dean's Award of Honour and Provost Award of Excellence</li>
                         <li>Multiple scholarships including UGC and Mitsubishi UFJ Foundation</li>
                     </ul>
                 </div>
-                <div class="highlight-card">
-                    <h3><i class="fas fa-laptop-code"></i> Technical Expertise</h3>
+                <div class="catalog-card">
+                    <span class="catalog-index">03/04</span>
+                    <div class="catalog-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Technical Expertise</h3>
                     <ul>
-                        <li>Modernized IUT library with Koha automation and RFID systems</li>
+                        <li>Deployed Koha-ILS and RFID systems at IUT</li>
                         <li>Contributed to 15+ library automation projects across Bangladesh</li>
                         <li>Expert in DSpace, SLiMS, Greenstone, and web technologies</li>
-                        <li>Designing zero-budget digital library frameworks</li>
+                        <li>Leading a zero-budget digital library framework initiative</li>
                     </ul>
                 </div>
-                <div class="highlight-card">
-                    <h3><i class="fas fa-microscope"></i> Research Focus</h3>
+                <div class="catalog-card">
+                    <span class="catalog-index">04/04</span>
+                    <div class="catalog-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>Research Focus</h3>
                     <ul>
                         <li>AI in Academia & Information Retrieval</li>
                         <li>Health Informatics & Misinformation Studies</li>
-                        <li>Published in World Scientific and peer-reviewed journals</li>
+                        <li>Peer reviewer, Global Knowledge, Memory and Communication</li>
                         <li>Best Paper Award at IIKM 2025</li>
                     </ul>
                 </div>
@@ -124,10 +202,13 @@
     </div>
 </section>
 
+
+
    <!-- Skills Section -->
     <section id="skills" class="section skills">
         <div class="container">
-            <h2 class="section-title fade-in">Skills & Expertise</h2>
+            <span class="eyebrow fade-in">Capabilities</span>
+            <h2 class="section-title fade-in">Skills &amp; Expertise</h2>
             <div class="skills-grid fade-in">
                 <div class="skill-category">
                     <h3><i class="fas fa-database"></i> Library Systems</h3>
@@ -187,55 +268,64 @@
     <!-- Education Section -->
     <section id="education" class="section">
         <div class="container">
+            <span class="eyebrow fade-in">Academic Background</span>
             <h2 class="section-title fade-in">Education</h2>
-            <div class="education-grid fade-in">
-                <div class="education-item">
-                    <div class="education-content">
-                        <div class="degree">Masters in Information Science and Library Management</div>
-                        <div class="university">University of Dhaka</div>
-                        <div class="cgpa">CGPA: 3.97/4.00</div>
+
+            <div class="diploma-grid fade-in">
+
+                <div class="diploma-card diploma-card--current">
+                    <div class="diploma-seal">
+                        <img src="images/university-of-arizona-logo.png" alt="University of Arizona" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="seal-fallback">UA</span>
                     </div>
-                    <div class="education-meta">
-                        <div class="year">2020 - 2021</div>
-                        <a href="#" class="view-btn">View Certificate</a>
-                    </div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="education-content">
-                        <div class="degree">Bachelor in Information Science and Library Management</div>
-                        <div class="university">University of Dhaka</div>
-                        <div class="cgpa">CGPA: 3.90/4.00</div>
-                    </div>
-                    <div class="education-meta">
-                        <div class="year">2015 - 2019</div>
-                        <a href="#" class="view-btn">View Certificate</a>
-                    </div>
+                    <span class="diploma-years">Fall 2026 — Present</span>
+                    <h3>PhD in Information Science</h3>
+                    <p class="diploma-org">University of Arizona, USA</p>
+                    <span class="diploma-badge diploma-badge--current">Current</span>
                 </div>
 
-                <div class="education-item">
-                    <div class="education-content">
-                        <div class="degree">Higher Secondary School Certificate (HSC)</div>
-                        <div class="university">Kaliganj Haat Degree College, Rajshahi</div>
-                        <div class="cgpa">GPA: 5.00/5.00</div>
+                <div class="diploma-card">
+                    <div class="diploma-seal">
+                        <img src="images/university-of-dhaka-logo.png" alt="University of Dhaka" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="seal-fallback">DU</span>
                     </div>
-                    <div class="education-meta">
-                        <div class="year">2015</div>
-                        <a href="#" class="view-btn">View Certificate</a>
-                    </div>
+                    <span class="diploma-years">2020 — 2021</span>
+                    <h3>Masters in Information Science &amp; Library Management</h3>
+                    <p class="diploma-org">University of Dhaka</p>
+                    <span class="diploma-badge">CGPA 3.97 / 4.00</span>
                 </div>
-                <div class="education-item">
-                    <div class="education-content">
-                        <div class="degree">Secondary School Certificate (SSC)</div>
-                        <div class="university">Dr. Abu Bakar High School, Rajshahi</div>
-                        <div class="cgpa">GPA: 4.81/5.00</div>
+
+                <div class="diploma-card">
+                    <div class="diploma-seal">
+                        <img src="images/university-of-dhaka-logo.png" alt="University of Dhaka" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="seal-fallback">DU</span>
                     </div>
-                    <div class="education-meta">
-                        <div class="year">2013</div>
-                        <a href="#" class="view-btn">View Certificate</a>
-                    </div>
+                    <span class="diploma-years">2015 — 2019</span>
+                    <h3>Bachelor in Information Science &amp; Library Management</h3>
+                    <p class="diploma-org">University of Dhaka</p>
+                    <span class="diploma-badge">CGPA 3.90 / 4.00</span>
                 </div>
-                
+
+                <div class="diploma-card">
+                    <div class="diploma-seal diploma-seal--mark">
+                        <span class="seal-fallback">KHC</span>
+                    </div>
+                    <span class="diploma-years">2015</span>
+                    <h3>Higher Secondary Certificate (HSC)</h3>
+                    <p class="diploma-org">Kaliganj Haat Degree College, Rajshahi</p>
+                    <span class="diploma-badge">GPA 5.00 / 5.00</span>
+                </div>
+
+                <div class="diploma-card">
+                    <div class="diploma-seal diploma-seal--mark">
+                        <span class="seal-fallback">DAB</span>
+                    </div>
+                    <span class="diploma-years">2013</span>
+                    <h3>Secondary School Certificate (SSC)</h3>
+                    <p class="diploma-org">Dr. Abu Bakar High School, Rajshahi</p>
+                    <span class="diploma-badge">GPA 4.81 / 5.00</span>
+                </div>
+
             </div>
         </div>
     </section>
@@ -243,7 +333,8 @@
     <!-- Publications Section -->
     <section id="publications" class="section">
         <div class="container">
-            <h2 class="section-title fade-in">Publications</h2>
+            <span class="eyebrow fade-in">Research Output</span>
+            <h2 class="section-title fade-in">Selected Publications</h2>
             <div class="publications-grid fade-in">
                 <div class="publication-item">
                     <div class="publication-content">
@@ -292,6 +383,7 @@
     <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="container">
+            <span class="eyebrow fade-in">Career</span>
             <h2 class="section-title fade-in">Professional Experience</h2>
             
             <div class="experience-timeline fade-in">
@@ -327,7 +419,7 @@
                         <div class="job-description">
                             <ul>
                                 <li>Led the modernization and implementation of the library's digital presence, including designing a new library website, developing Koha database, integrating barcode-based circulation and automated email notifications.</li>
-                                <li>Managed 40,000 reading materials, integrating department-wise textbook lists, e-resources and trained 10+ staff members in web-based library organization and automated all library sections to reduce manual work.</li>
+                                <li>Managed 100,000+ reading materials across multiple institutions, integrating department-wise textbook lists, e-resources and trained 10+ staff members in web-based library organization and automated all library sections to reduce manual work.</li>
                             </ul>
                         </div>
                 </div>
@@ -372,12 +464,92 @@
         </div>
     </section>
 
+    <!-- Field Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <span class="eyebrow fade-in">Field Engagement</span>
+            <h2 class="section-title fade-in">Field Projects</h2>
+
+            <div class="project-intro fade-in">
+                <h3>Toward Designing a Zero-Budget Digital Library Framework for School and College Libraries of Bangladesh</h3>
+                <p>Most school and college libraries in Bangladesh lack digital services, including basic library websites — and the primary barrier is insufficient funding. This ongoing project designs a framework that enables libraries, especially in developing and least-developed countries, to build and maintain digital services at zero cost, using free resources and requiring only minimal technical skill.</p>
+            </div>
+
+            <h3 class="subsection-title fade-in">Automation &amp; Digitization Projects Across Libraries</h3>
+            <p class="subsection-intro fade-in">Beyond this research, Liton has led or contributed to library automation and digitization work at the following institutions:</p>
+
+            <div class="field-grid fade-in">
+                <div class="field-item">
+                    <h4>Tairunnessa Memorial Medical College &amp; Hospital Library</h4>
+                    <span class="field-role">Project Coordinator</span>
+                    <span class="field-dates">Jan 2024 – Aug 2024</span>
+                </div>
+                <div class="field-item">
+                    <h4>University of Skill Enrichment and Technology Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Jan 2020 – Mar 2020</span>
+                </div>
+                <div class="field-item">
+                    <h4>Bangladesh Police Staff College Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Jan 2019 – Mar 2019</span>
+                </div>
+                <div class="field-item">
+                    <h4>Bangladesh Foreign Service Academy Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Feb 2017 – Dec 2019</span>
+                </div>
+                <div class="field-item">
+                    <h4>Government Madrash-E-Alia Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Sep 2017 – Sep 2018</span>
+                </div>
+                <div class="field-item">
+                    <h4>Bangladesh National Parliament House Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Apr 2018 – Jun 2018</span>
+                </div>
+                <div class="field-item">
+                    <h4>Institute of Business Administration (IBA) Library, DU</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Jan 2018 – Mar 2018</span>
+                </div>
+                <div class="field-item">
+                    <h4>Quazi Nooruzzaman Memorial Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Apr 2017 – Mar 2018</span>
+                </div>
+                <div class="field-item">
+                    <h4>Bangladesh Supreme Court Bar Association Library</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Jun 2017 – Sep 2017</span>
+                </div>
+                <div class="field-item">
+                    <h4>Department of Zoology Seminar Library, DU</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Feb 2017 – Mar 2017</span>
+                </div>
+                <div class="field-item">
+                    <h4>Dept. of Communication Disorders Seminar Library, DU</h4>
+                    <span class="field-role">Project Executive</span>
+                    <span class="field-dates">Jan 2017 – Mar 2022</span>
+                </div>
+                <div class="field-item">
+                    <h4>International Mother Language Institute</h4>
+                    <span class="field-role">Project Member</span>
+                    <span class="field-dates">2021 – 2022</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Awards Section -->
 
     <section id="awards" class="section">
         <div class="container">
-            <h2 class="section-title fade-in">Awards & Recognition</h2>
+            <span class="eyebrow fade-in">Recognition</span>
+            <h2 class="section-title fade-in">Awards &amp; Honors</h2>
             <div class="awards-list fade-in">
                 <div class="award-item">
                     <div class="award-icon"><i class="fas fa-medal"></i></div>
@@ -469,71 +641,182 @@
         </div>
     </section>
 
+    <!-- Milestone Gallery Section -->
+    <section id="milestones" class="section milestone-gallery-section">
+        <div class="container">
+            <span class="eyebrow fade-in">Highlights</span>
+            <h2 class="section-title fade-in">Milestones &amp; Memories</h2>
+
+            <div class="carousel-wrapper fade-in">
+                <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
+                <button class="nav-btn next-btn" id="nextBtn" aria-label="Next Slide">&#10095;</button>
+
+                <div class="gallery-viewport">
+                    <div class="gallery-container" id="galleryContainer">
+
+                        <div class="gallery-card">
+                            <div class="card-image">
+                                <img src="images/gold-medal.jpg" alt="Gold Medal Ceremony" onerror="this.style.display='none'">
+                                <span class="card-emoji">🏅</span>
+                                <span class="zoom-hint"><i class="fas fa-expand"></i></span>
+                            </div>
+                            <div class="card-info">
+                                <h3>Gold Medal Reception</h3>
+                                <p>Receiving the Mohammad Shahidullah Memorial Gold Medal at the University of Dhaka.</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <div class="card-image">
+                                <img src="images/fieldwork-rajshahi.jpg" alt="Fieldwork in Rajshahi" onerror="this.style.display='none'">
+                                <span class="card-emoji">🧭</span>
+                                <span class="zoom-hint"><i class="fas fa-expand"></i></span>
+                            </div>
+                            <div class="card-info">
+                                <h3>Fieldwork &amp; Research</h3>
+                                <p>Coordinating the 30-member research team across villages in Rajshahi.</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <div class="card-image">
+                                <img src="images/iut-library.jpg" alt="IUT Library Modernization" onerror="this.style.display='none'">
+                                <span class="card-emoji">📚</span>
+                                <span class="zoom-hint"><i class="fas fa-expand"></i></span>
+                            </div>
+                            <div class="card-info">
+                                <h3>Library Modernization</h3>
+                                <p>Celebrating the successful rollout of the Koha &amp; RFID automation system at IUT.</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <div class="card-image">
+                                <img src="images/best-paper-award.jpg" alt="Best Paper Award" onerror="this.style.display='none'">
+                                <span class="card-emoji">🏆</span>
+                                <span class="zoom-hint"><i class="fas fa-expand"></i></span>
+                            </div>
+                            <div class="card-info">
+                                <h3>Best Paper Award</h3>
+                                <p>Receiving the Best Paper Award at the International Conference (IIKM).</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <div class="card-image">
+                                <img src="images/ai-seminar.jpg" alt="Academic Presentation" onerror="this.style.display='none'">
+                                <span class="card-emoji">🎓</span>
+                                <span class="zoom-hint"><i class="fas fa-expand"></i></span>
+                            </div>
+                            <div class="card-info">
+                                <h3>AI in Academia Seminar</h3>
+                                <p>Presenting findings on generative AI implementation frameworks in higher education.</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <div class="card-image">
+                                <img src="images/national-training.jpg" alt="Research Survey Development" onerror="this.style.display='none'">
+                                <span class="card-emoji">🗺️</span>
+                                <span class="zoom-hint"><i class="fas fa-expand"></i></span>
+                            </div>
+                            <div class="card-info">
+                                <h3>National Training Projects</h3>
+                                <p>Conducting surveys across 8 divisions for the Land Administration Training Center.</p>
+                            </div>
+                        </div>
+
+                        <!-- Add more <div class="gallery-card">...</div> blocks here for additional photos. -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestone Lightbox -->
+    <div class="lightbox" id="milestoneLightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#10095;</button>
+        <div class="lightbox-content">
+            <div class="lightbox-image-wrap">
+                <img id="lightboxImage" src="" alt="">
+                <span class="lightbox-emoji" id="lightboxEmoji"></span>
+            </div>
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Training Section -->
     <section id="training" class="section">
         <div class="container">
-            <h2 class="section-title fade-in">Training & Courses</h2>
+            <span class="eyebrow fade-in">Continuing Education</span>
+            <h2 class="section-title fade-in">Training &amp; Courses</h2>
             <div class="training-grid fade-in">
 
                 <div class="training-item">
+                    <span class="training-year">2026</span>
                     <div class="training-title">Strategic Science Communication: Building Bridges between Scientists and Journalist for Knowledge Advancement.</div>
                     <div class="training-org">COMSTECH - OIC</div>
-                    <div class="training-year">2026</div>
                 </div>
 
                 <div class="training-item">
+                    <span class="training-year">2025</span>
                     <div class="training-title">Library Automation and Digitization Software 'SLiMS' with 'RDA'</div>
                     <div class="training-org">BALID Institute of Information Management (BIIM)</div>
-                    <div class="training-year">2025</div>
                 </div>
                 
                 <div class="training-item">
+                    <span class="training-year">2025</span>
                     <div class="training-title">E-Book preparation and Management</div>
                     <div class="training-org">Bangladesh National Scientific and Technical Documentation Center (BANSDOC)</div>
-                    <div class="training-year">2025</div>
                 </div>
 
                 <div class="training-item">
+                    <span class="training-year">2024</span>
                     <div class="training-title">Modern Library Management</div>
                     <div class="training-org">Bangladesh National Archives and Library</div>
-                    <div class="training-year">2024</div>
                 </div>
                 
                 <div class="training-item">
+                    <span class="training-year">2024</span>
                     <div class="training-title">Statistical Analysis with R Programming</div>
                     <div class="training-org">DataScape</div>
-                    <div class="training-year">2024</div>
                 </div>
                 
                 <div class="training-item">
+                    <span class="training-year">2019 (Jan-Apr)</span>
                     <div class="training-title">Web Designing Using HTML, CSS & JAVASCRIPT</div>
                     <div class="training-org">IIT, DU</div>
-                    <div class="training-year">2019 (Jan-Apr)</div>
                 </div>
                 <div class="training-item">
+                    <span class="training-year">2019 (Mar 16-20)</span>
                     <div class="training-title">KOHA Installation & Customization</div>
                     <div class="training-org">Daffodil International University</div>
-                    <div class="training-year">2019 (Mar 16-20)</div>
                 </div>
                 <div class="training-item">
+                    <span class="training-year">2017</span>
                     <div class="training-title">Old Manuscript Reading and Translating</div>
                     <div class="training-org">Dhaka University Library</div>
-                    <div class="training-year">2017</div>
                 </div>
                 <div class="training-item">
+                    <span class="training-year">2016 (Jan-Mar)</span>
                     <div class="training-title">Computer Fundamentals & OS Basics</div>
                     <div class="training-org">ISLM, DU</div>
-                    <div class="training-year">2016 (Jan-Mar)</div>
                 </div>
                 <div class="training-item">
+                    <span class="training-year">2023</span>
                     <div class="training-title">Paper-based Research Learning</div>
                     <div class="training-org">CHINTA Research Bangladesh</div>
-                    <div class="training-year">2023</div>
                 </div>
                 <div class="training-item">
+                    <span class="training-year">2021</span>
                     <div class="training-title">HTML5, CSS3 & Bootstrap 4 For Web Development</div>
                     <div class="training-org">Shikho Technologies</div>
-                    <div class="training-year">2021</div>
                 </div>
             </div>
         </div>
@@ -542,6 +825,7 @@
     <!-- Memberships Section -->
     <section id="memberships" class="section">
         <div class="container">
+            <span class="eyebrow fade-in">Affiliations</span>
             <h2 class="section-title fade-in">Professional Memberships</h2>
             <div class="memberships-grid fade-in">
                 <div class="membership-item">
@@ -578,12 +862,123 @@
         </div>
     </section>
 
+    <!-- Volunteer & Services Section -->
+    <section id="volunteer" class="section">
+        <div class="container">
+            <span class="eyebrow fade-in">Community</span>
+            <h2 class="section-title fade-in">Volunteer &amp; Services</h2>
+            <div class="volunteer-grid fade-in">
+
+                <div class="volunteer-item">
+                    <i class="fas fa-pen-nib"></i>
+                    <div>
+                        <span class="volunteer-role">Reviewer</span>
+                        <span class="volunteer-org">Global Knowledge, Memory and Communication, Emerald Publishing</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <div>
+                        <span class="volunteer-role">Communication Officer</span>
+                        <span class="volunteer-org">Association for Information Science and Technology (ASIS&amp;T)</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-user-tie"></i>
+                    <div>
+                        <span class="volunteer-role">President</span>
+                        <span class="volunteer-org">Information 71 (Dhaka University Based Students Association)</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <div>
+                        <span class="volunteer-role">Education Secretary</span>
+                        <span class="volunteer-org">Ratoil Social Welfare Organization, Tanore, Rajshahi</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <span class="volunteer-role">Executive Member</span>
+                        <span class="volunteer-org">University Students Association of Tanore</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div>
+                        <span class="volunteer-role">Tourism Affairs Secretary</span>
+                        <span class="volunteer-org">Rajshahi Students Association of Dhaka University</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <div>
+                        <span class="volunteer-role">Organizing Volunteer</span>
+                        <span class="volunteer-org">International Symposium on Empowering LIS Professionals for Achieving SDGs</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <div>
+                        <span class="volunteer-role">Volunteer</span>
+                        <span class="volunteer-org">Badhan — A Blood Donor Organization</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-hands-helping"></i>
+                    <div>
+                        <span class="volunteer-role">Amanuensis</span>
+                        <span class="volunteer-org">Anirban — An Organization to Support Blind Students</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-microphone-alt"></i>
+                    <div>
+                        <span class="volunteer-role">Rapporteur</span>
+                        <span class="volunteer-org">Intl. Conference on the Role of LIS Professionals in the 4IR, LAB</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-tint"></i>
+                    <div>
+                        <span class="volunteer-role">Campaign Volunteer</span>
+                        <span class="volunteer-org">Sondhani — A Blood Donor Organization</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <span class="volunteer-role">Event Organizing Volunteer</span>
+                        <span class="volunteer-org">Librarians Times Bangladesh</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-people-carry"></i>
+                    <div>
+                        <span class="volunteer-role">Social Work Volunteer</span>
+                        <span class="volunteer-org">Dhaka University Alumni Association (DUAA)</span>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <span class="volunteer-role">Event Organizer</span>
+                        <span class="volunteer-org">Directorate of Public Libraries and Biswashahitya Kendro</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
         <div class="container">
-            <h2 class="section-title fade-in" style="color: var(--text-light);">Get In Touch</h2>
+            <span class="eyebrow fade-in">Get In Touch</span>
+                <h2 class="section-title fade-in">Let's Collaborate on Research</h2>
             <div class="contact-content fade-in">
                 <div class="contact-info">
                     <h3>Get In Touch</h3>
@@ -608,42 +1003,43 @@
                 <div class="contact-form">
                         <h3>Send Message</h3>
 
-                        <!-- NOTE: add id so JS can find the form -->
-                        <form id="contact-form" 
-                            action="https://docs.google.com/forms/d/e/1FAIpQLSfkT1NgvLnBqE4XNWd2yel5vrFKq-_nvVuEOxQSAV6gek_GIg/formResponse" 
-                            method="POST" 
-                            target="_self" 
+                        <form id="contact-form"
+                            action="https://api.web3forms.com/submit"
+                            method="POST"
                             novalidate>
-                            
+
+                            <input type="hidden" name="access_key" value="b020e433-b628-494b-9d45-953abae2e075">
+                            <input type="hidden" name="from_name" value="Portfolio Contact Form">
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">Full Name *</label>
-                                    <input type="text" id="name" name="entry.46496394" required>
+                                    <input type="text" id="name" name="name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email Address *</label>
-                                    <input type="email" id="email" name="entry.762992029" required>
+                                    <input type="email" id="email" name="email" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="organization">Organization/Institution</label>
-                                    <input type="text" id="organization" name="entry.1775075474">
+                                    <input type="text" id="organization" name="organization">
                                 </div>
                                 <div class="form-group">
                                     <label for="subject">Subject *</label>
-                                    <input type="text" id="subject" name="entry.2054331517" required>
+                                    <input type="text" id="subject" name="subject" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="message">Message *</label>
-                                <textarea id="message" name="entry.798017360" required placeholder="Please describe your project, collaboration idea, or inquiry in detail..."></textarea>
+                                <textarea id="message" name="message" required placeholder="Please describe your project, collaboration idea, or inquiry in detail..."></textarea>
                             </div>
 
                             <!-- Honeypot (hidden) -->
-                            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+                            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
                             <button type="submit" class="btn-submit">
                                 <i class="fas fa-paper-plane"></i> Send Message
