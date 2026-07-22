@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  /* ---------- Navbar background change on scroll ---------- */
+  /* ---------- Navbar shadow change on scroll ---------- */
   const navbar = document.querySelector('.navbar');
   if (navbar) {
     const setNavBg = () => {
-      navbar.style.background = window.scrollY > 50
-        ? 'rgba(196, 30, 58, 1)'
-        : 'rgba(196, 30, 58, 0.98)';
+      navbar.style.boxShadow = window.scrollY > 50
+        ? '0 4px 14px rgba(74,12,23,0.12)'
+        : 'none';
     };
     setNavBg();
     window.addEventListener('scroll', setNavBg, { passive: true });
@@ -44,34 +44,23 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => navMenu.classList.remove('active'));
     });
   }
-/* ---------- CONTACT FORM → Google Form ---------- */
+/* ---------- CONTACT FORM → Web3Forms ---------- */
 const form = document.getElementById('contact-form');
 if (form) {
   const submitBtn = form.querySelector('.btn-submit');
-
-  // ✅ Google Form "formResponse" URL
-  const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSfkT1NgvLnBqE4XNWd2yel5vrFKq-_nvVuEOxQSAV6gek_GIg/formResponse';
+  const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // 🕵️ Honeypot spam check
-    if (form.website && form.website.value.trim() !== '') {
+    if (form.botcheck && form.botcheck.checked) {
       form.reset();
       return;
     }
 
-    // Gather data from form fields
-    const data = {
-      'entry.46496394': form.name?.value?.trim() || '',          // Name
-      'entry.762992029': form.email?.value?.trim() || '',        // Email
-      'entry.1775075474': form.organization?.value?.trim() || '',// Organization
-      'entry.2054331517': form.subject?.value?.trim() || '',     // Subject
-      'entry.798017360': form.message?.value?.trim() || ''       // Message
-    };
-
     // Required field validation
-    if (!data['entry.46496394'] || !data['entry.762992029'] || !data['entry.2054331517'] || !data['entry.798017360']) {
+    if (!form.name?.value?.trim() || !form.email?.value?.trim() || !form.subject?.value?.trim() || !form.message?.value?.trim()) {
       alert('⚠️ Please fill in all required fields.');
       return;
     }
@@ -85,20 +74,23 @@ if (form) {
     }
 
     try {
-      // Send data as FormData
-      const formData = new FormData();
-      for (const key in data) formData.append(key, data[key]);
+      const formData = new FormData(form);
 
-      // Google Forms requires POST to "formResponse"
-      await fetch(googleFormURL, {
+      const response = await fetch(WEB3FORMS_URL, {
         method: 'POST',
-        mode: 'no-cors', // avoids CORS issues
+        headers: { Accept: 'application/json' },
         body: formData
       });
 
-      // Reset form and show success message
-      form.reset();
-      alert('✅ Message sent successfully! I will get back to you soon.');
+      const result = await response.json();
+
+      if (result.success) {
+        form.reset();
+        alert('✅ Message sent successfully! I will get back to you soon.');
+      } else {
+        console.error(result);
+        alert('❌ There was a problem sending your message. Please try again later.');
+      }
 
     } catch (err) {
       console.error(err);
@@ -114,6 +106,125 @@ if (form) {
 }
 
 
+
+  /* ---------- Milestone gallery carousel ---------- */
+  const galleryContainer = document.getElementById('galleryContainer');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  if (galleryContainer && prevBtn && nextBtn) {
+    let currentIndex = 0;
+    let autoSlideTimer;
+
+    const getVisibleCardsCount = () => {
+      const width = window.innerWidth;
+      if (width > 1200) return 5;
+      if (width > 768) return 3;
+      if (width > 480) return 2;
+      return 1;
+    };
+
+    const updateSlide = () => {
+      const totalCards = galleryContainer.children.length;
+      const visibleCards = getVisibleCardsCount();
+      const maxIndex = Math.max(totalCards - visibleCards, 0);
+
+      if (currentIndex > maxIndex) currentIndex = 0;
+      else if (currentIndex < 0) currentIndex = maxIndex;
+
+      const firstCard = galleryContainer.children[0];
+      if (!firstCard) return;
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const offset = currentIndex * (cardWidth + 20);
+      galleryContainer.style.transform = `translateX(-${offset}px)`;
+    };
+
+    const moveNext = () => { currentIndex++; updateSlide(); };
+    const movePrev = () => { currentIndex--; updateSlide(); };
+
+    const startTimer = () => { autoSlideTimer = setInterval(moveNext, 5000); };
+    const resetTimer = () => { clearInterval(autoSlideTimer); startTimer(); };
+
+    nextBtn.addEventListener('click', () => { moveNext(); resetTimer(); });
+    prevBtn.addEventListener('click', () => { movePrev(); resetTimer(); });
+
+    galleryContainer.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
+    galleryContainer.addEventListener('mouseleave', startTimer);
+
+    window.addEventListener('resize', () => { currentIndex = 0; updateSlide(); });
+
+    updateSlide();
+    startTimer();
+  }
+
+  /* ---------- Milestone lightbox (zoom view) ---------- */
+  const galleryCards = document.querySelectorAll('.gallery-card');
+  const lightbox = document.getElementById('milestoneLightbox');
+
+  if (galleryCards.length && lightbox) {
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxEmoji = document.getElementById('lightboxEmoji');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDesc = document.getElementById('lightboxDesc');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    let currentLightboxIndex = 0;
+
+    const openLightbox = (index) => {
+      currentLightboxIndex = (index + galleryCards.length) % galleryCards.length;
+      const card = galleryCards[currentLightboxIndex];
+      const img = card.querySelector('.card-image img');
+      const emoji = card.querySelector('.card-emoji');
+      const title = card.querySelector('.card-info h3')?.textContent || '';
+      const desc = card.querySelector('.card-info p')?.textContent || '';
+
+      const hasRealImage = img && img.style.display !== 'none';
+      lightboxImage.style.display = hasRealImage ? 'block' : 'none';
+      lightboxEmoji.style.display = hasRealImage ? 'none' : 'flex';
+
+      if (hasRealImage) {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt || title;
+      }
+      lightboxEmoji.textContent = emoji ? emoji.textContent : '';
+      lightboxTitle.textContent = title;
+      lightboxDesc.textContent = desc;
+
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    const showNext = () => openLightbox(currentLightboxIndex + 1);
+    const showPrev = () => openLightbox(currentLightboxIndex - 1);
+
+    galleryCards.forEach((card, i) => {
+      const imageEl = card.querySelector('.card-image');
+      if (imageEl) {
+        imageEl.addEventListener('click', () => openLightbox(i));
+      }
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightboxNext?.addEventListener('click', showNext);
+    lightboxPrev?.addEventListener('click', showPrev);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+  }
 
   /* ---------- Typing effect for hero text ---------- */
   const heroTitle = document.querySelector('.hero-text h1');
