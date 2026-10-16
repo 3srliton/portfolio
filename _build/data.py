@@ -1,38 +1,116 @@
-# All content below comes from Md Liton Ali's own website (litonali.com).
+# -*- coding: utf-8 -*-
+# All content: Md Liton Ali's own website, Google Scholar profile and published papers.
 SITE = "https://www.litonali.com"
 NAME = "Md Liton Ali"
 EMAIL = "litonali@arizona.edu"
 PHONE = "+8801797709873"
+SCHOLAR = "https://scholar.google.com/citations?user=ygCGG80AAAAJ&hl=en"
 
 SOCIALS = [
     ("LinkedIn", "fab fa-linkedin-in", "https://www.linkedin.com/in/3srliton/"),
-    ("Google Scholar", "fas fa-graduation-cap", "https://scholar.google.com/citations?user=ygCGG80AAAAJ&hl=en"),
+    ("Google Scholar", "fas fa-graduation-cap", SCHOLAR),
     ("GitHub", "fab fa-github", "https://github.com/3srliton"),
     ("X (Twitter)", "fab fa-x-twitter", "https://x.com/3srliton"),
     ("Facebook", "fab fa-facebook-f", "https://www.facebook.com/3srliton"),
     ("Instagram", "fab fa-instagram", "https://www.instagram.com/3srliton"),
 ]
 
-INTERESTS = [
-    ("fas fa-diagram-project", "Science of Science", "How research is produced, shared and accessed: scholarly communication, webometrics and alternative access to publications."),
-    ("fas fa-robot", "AI in Education", "How AI and e-learning reshape teaching, learning and the academic library."),
-    ("fas fa-shield-halved", "Misinformation", "Health misinformation and how people evaluate the information they encounter."),
-    ("fas fa-heart-pulse", "Health Informatics", "Information access and systems in health contexts, from medical college libraries to patient information."),
-    ("fas fa-sitemap", "Knowledge Management", "Knowledge and information sharing practices in communities and institutions."),
+# ---------------------------------------------------------------- research themes
+THEMES = {
+    "sos": dict(name="Science of Science", short="SciSci", color="#7c83ff", icon="fas fa-diagram-project",
+                lead=True, blurb="How scholarly knowledge is produced, published and accessed: scholarly communication, publishing policy, webometrics and the shadow libraries people turn to when access is blocked."),
+    "aihe": dict(name="AI in Higher Education", short="AI + HE", color="#c3f53c", icon="fas fa-microchip",
+                 lead=True, blurb="How generative AI is reshaping universities, publishers and libraries: institutional policy, AI-powered library services, and AI's effect on how students learn and perform."),
+    "ib": dict(name="Information Behavior", short="Info Behavior", color="#5ee7ff", icon="fas fa-people-arrows",
+               lead=False, blurb="How people seek, share and use information in everyday academic life."),
+    "mis": dict(name="Misinformation & Belief", short="Fake News", color="#ff7a90", icon="fas fa-shield-halved",
+                lead=False, blurb="How the information people consume shapes beliefs, morality and trust."),
+    "dl": dict(name="Digital Libraries", short="Libraries", color="#ffb547", icon="fas fa-book-open-reader",
+               lead=False, blurb="Low-cost, automated library systems that widen access in resource-constrained settings."),
+}
+
+# ---------------------------------------------------------------- publications
+# type: journal | conference | review
+PUBS = [
+    dict(id="genai-policy", year=2025, type="conference", award="Best Paper Award",
+         title="GenAI—Stay Out of It or Find a Suitable Way to Incorporate It? A Policy Review of Academic Publishers and Universities",
+         authors="Ali, M. L.", venue="International Conference on Information and Knowledge Management (IIKM)", details="4(1), 65–66",
+         themes=["aihe", "sos"], url=None,
+         summary="A policy review of how academic publishers and universities are responding to generative AI, set around the question in the title: should institutions keep GenAI out of scholarship, or find a suitable way to incorporate it?",
+         method="Policy review of academic publishers' and universities' published positions on generative AI.",
+         findings=None),
+    dict(id="chatbot", year=2025, type="conference", award=None,
+         title="Evaluating the Effectiveness of the AI-Powered Chatbot in Advancing User Support in Academic Libraries",
+         authors="Ali, M. L., & Reza, R. B.", venue="International Conference on Reimagining Librarianship", details="",
+         themes=["aihe", "dl"], url=None,
+         summary="Evaluates how well an AI-powered chatbot advances user support in academic libraries, asking whether conversational AI can extend the reach of reference and help services.",
+         method="Effectiveness evaluation of an AI-powered library chatbot.",
+         findings=None),
+    dict(id="elearning", year=2024, type="journal", award=None, cited=1,
+         title="Exploring university students’ perceptions and attitudes toward associated factors of electronic learning during the COVID-19 pandemic",
+         authors="Ali, M. L.", venue="Advances in Online Education: A Peer-Reviewed Journal", details="3(1), 38–51", doi="10.69554/CCKQ7896",
+         themes=["aihe", "ib"], url="https://drive.google.com/file/d/1rGJd07rdm7skd5Zv-xjpg7NOpO9mFpE8/view?usp=drive_link",
+         summary="Examines how University of Dhaka students perceived the forced shift to electronic learning during COVID-19, and which technological, pedagogical, institutional and individual factors shaped their acceptance of it.",
+         method="Cross-sectional online survey of 412 University of Dhaka students; closed questions analysed in SPSS, open questions coded thematically.",
+         findings=["Performance expectancy, social influence, facilitating conditions, perceived usefulness and ease of use shape acceptance of e-learning.",
+                   "Individual innovativeness and e-learning preparedness positively influence adoption.",
+                   "Closing the digital divide, building digital literacy and involving students in e-learning policy could improve outcomes."],
+         n=412),
+    dict(id="kis", year=2023, type="journal", award=None,
+         title="Knowledge and Information Sharing Practices among Multidisciplinary University Dormitory Residents: Exploring the Influence of Gender, Academic Discipline, and Degree Level",
+         authors="Ali, M. L.", venue="Journal of Information and Knowledge Management (JIKM)", details="13(2), 1–16",
+         themes=["ib"], url="https://journal.uitm.edu.my/index.php/JIKM/article/download/4732/2552/17605",
+         summary="Studies the culture of knowledge and information sharing among students living in 16 dormitories of a large public university in Bangladesh, and how it varies by gender, discipline and degree level.",
+         method="Structured questionnaire; 337 usable responses from 16 dormitories; descriptive statistics, t-tests and ANOVA in SPSS.",
+         findings=["Students share knowledge and information with peers frequently; about 30% do so “very often”.",
+                   "85.46% see knowledge and information sharing as important for career development.",
+                   "Male students report sharing more often, and attitudes differ significantly by gender; discipline shows no significant difference.",
+                   "Top barriers: low awareness of knowledge sharing and social media addiction."],
+         n=337),
+    dict(id="webometric", year=2023, type="journal", award=None,
+         title="Webometric analysis of alternative access to scholarly publication: special reference to LibGen and Sci-Hub",
+         authors="Ali, M. L.", venue="International Journal of Information and Knowledge Studies (IJIKS)", details="3(1), 85–102",
+         themes=["sos"], url="https://scispace.com/pdf/webometric-analysis-of-alternative-access-to-scholarly-3q06tl5ewb.pdf",
+         summary="Uses webometrics to map worldwide usage and growth of Library Genesis and Sci-Hub, the shadow libraries that researchers turn to when scholarly publications are priced out of reach.",
+         method="Webometric analysis using LibGen and Sci-Hub databases, SimilarWeb web analytics and Sci-Hub download logs, with quantitative and qualitative analysis (data to 2022).",
+         findings=["LibGen and Sci-Hub show a remarkable surge in popularity despite copyright disputes and restrictions.",
+                   "Users come from many nations, including developed countries such as the USA.",
+                   "Science and technology dominate downloads, with medicine the most sought-after field.",
+                   "High prices and limited availability of scholarly publications are the two main drivers."]),
+    dict(id="unlocking", year=2023, type="conference", award=None,
+         title="Unlocking knowledge frontiers: Library Genesis and Sci-Hub as alternative gateways to scholarly publications",
+         authors="Ali, M. L.", venue="International Conference on Information and Knowledge Management (IIKM)", details="3(1), 63–64",
+         themes=["sos"], url=None,
+         summary="Conference presentation of the LibGen and Sci-Hub webometric study, highlighting what shadow-library usage reveals about pricing, access barriers and traditional publishing models.",
+         method="Webometric analysis (LibGen and Sci-Hub databases, SimilarWeb, Sci-Hub download data).",
+         findings=["Downloads frequently come from highly regarded publishers and journals.",
+                   "Implications for policymakers, publishers and researchers addressing demand for affordable scholarly access."]),
+    dict(id="religion", year=2023, type="conference", award=None,
+         title="Assessing the Impact of Religious Information on Political Beliefs and Personal Morality among Bangladeshi People",
+         authors="Ali, M. L., Mahmud, M. R., & Reza, R. B.", venue="International Conference on Library & Information Science (ICLIS 2023)", details="p. 45",
+         themes=["mis", "ib"], url=None,
+         summary="Explores how religious information shapes the personal morality and political beliefs of Bangladeshi citizens, in a country where religion plays a central role in society and politics.",
+         method="Online survey of 210 respondents (convenience sampling), five-point Likert scale, Mann–Whitney U and Kruskal–Wallis tests.",
+         findings=["Religious information has an impact on Bangladeshi citizens' morality and political beliefs.",
+                   "Opinions differ significantly by educational level, current residency and information literacy."],
+         n=210),
+    dict(id="ethics", year=None, type="review", award=None,
+         title="Perceptions and behaviors of academic library users towards ethical use of library resources and services: reference to university students",
+         authors="Ali, M. L.", venue="Manuscript under review", details="",
+         themes=["ib", "dl"], url=None,
+         summary="Investigates how university students perceive and practise the ethical use of academic library resources and services.",
+         method=None, findings=None),
 ]
 
-PUBS = [
-    dict(year=2024, status="published", title="Exploring university students' perceptions and attitudes toward associated factors of electronic learning during the COVID-19 pandemic",
-         venue="Advances in Online Education", url="https://drive.google.com/file/d/1rGJd07rdm7skd5Zv-xjpg7NOpO9mFpE8/view?usp=drive_link",
-         tags=["E-learning", "Higher Education", "COVID-19"]),
-    dict(year=2023, status="published", title="Knowledge and information sharing practices among multidisciplinary university dormitory residents: exploring the influence of gender, academic discipline, and degree level",
-         venue="Journal of Information and Knowledge Management (JIKM)", url="https://journal.uitm.edu.my/index.php/JIKM/article/download/4732/2552/17605",
-         tags=["Knowledge Sharing", "Information Behavior"]),
-    dict(year=2023, status="published", title="Webometric analysis of alternative access to scholarly publication: special reference to LibGen and Sci-Hub",
-         venue="International Journal of Information and Knowledge Studies", url="https://scispace.com/pdf/webometric-analysis-of-alternative-access-to-scholarly-3q06tl5ewb.pdf",
-         tags=["Webometrics", "Scholarly Communication"]),
-    dict(year=2024, status="review", title="Perceptions and behaviors of academic library users towards ethical use of library resources and services: reference to university students",
-         venue="Under review", url=None, tags=["Information Ethics", "Academic Libraries"]),
+NOW = [
+    dict(status="In progress", title="AI and university students' academic performance", theme="aihe",
+         text="A research project on how AI tools affect the academic performance of university students."),
+    dict(status="In progress", title="Systematic review: GenAI in second-language speaking", theme="aihe",
+         text="Mapping the pedagogical designs and roles of generative AI in L2 speaking learning, guided by the task-based language teaching framework."),
+    dict(status="Planned", title="Systematic review: AI in higher education", theme="aihe",
+         text="A systematic review of research on artificial intelligence across higher education."),
+    dict(status="Ongoing", title="Zero-budget digital library framework", theme="dl",
+         text="A framework that lets school and college libraries in Bangladesh and other low-resource settings build digital services at zero cost, using free tools and minimal technical skill."),
 ]
 
 EXPERIENCE = [
@@ -61,7 +139,6 @@ EXPERIENCE = [
                  "Analyzed qualitative and quantitative data, developed reports, and presented findings to academic peers and community representatives."]),
 ]
 
-# (name, role, start (year, month), end (year, month), display dates)
 FIELD = [
     ("Tairunnessa Memorial Medical College & Hospital Library", "Project Coordinator", (2024, 1), (2024, 8), "Jan 2024 – Aug 2024"),
     ("International Mother Language Institute", "Project Member", (2021, 1), (2022, 12), "2021 – 2022"),
@@ -86,14 +163,14 @@ TRAINING = [
     ("2024", "Statistical Analysis with R Programming", "DataScape"),
     ("2023", "Paper-based Research Learning", "CHINTA Research Bangladesh"),
     ("2021", "HTML5, CSS3 & Bootstrap 4 for Web Development", "Shikho Technologies"),
-    ("2019 · Jan–Apr", "Web Designing using HTML, CSS & JavaScript", "IIT, University of Dhaka"),
-    ("2019 · Mar 16–20", "KOHA Installation & Customization", "Daffodil International University"),
+    ("2019", "Web Designing using HTML, CSS & JavaScript", "IIT, University of Dhaka"),
+    ("2019", "KOHA Installation & Customization", "Daffodil International University"),
     ("2017", "Old Manuscript Reading and Translating", "Dhaka University Library"),
-    ("2016 · Jan–Mar", "Computer Fundamentals & OS Basics", "ISLM, University of Dhaka"),
+    ("2016", "Computer Fundamentals & OS Basics", "ISLM, University of Dhaka"),
 ]
 
 EDUCATION = [
-    dict(years="Fall 2026 – Present", degree="PhD in Information Science", org="College of Information Science, University of Arizona, USA", badge="Current", seal="images/web/university-of-arizona-logo.webp", abbr="UA", current=True),
+    dict(years="Fall 2026 – Present", degree="PhD in Information Science", org="College of Information Science, University of Arizona, USA", badge="In progress", seal="images/web/university-of-arizona-logo.webp", abbr="UA", current=True),
     dict(years="2020 – 2021", degree="Master of Arts in Information Science & Library Management", org="University of Dhaka", badge="CGPA 3.97 / 4.00 · Gold Medal", seal="images/web/university-of-dhaka-logo.webp", abbr="DU", current=False),
     dict(years="2015 – 2019", degree="Bachelor in Information Science & Library Management", org="University of Dhaka", badge="CGPA 3.90 / 4.00", seal="images/web/university-of-dhaka-logo.webp", abbr="DU", current=False),
     dict(years="2015", degree="Higher Secondary Certificate (HSC)", org="Kaliganj Haat Degree College, Rajshahi", badge="GPA 5.00 / 5.00", seal=None, abbr="HSC", current=False),
@@ -102,13 +179,13 @@ EDUCATION = [
 
 SKILLS = [
     ("fas fa-database", "Library Systems", ["Koha", "DSpace", "SLiMS", "Greenstone", "DocuDex", "RFID", "Cataloging", "Classification", "Dublin Core", "MARC / RDA", "Automation", "Digitization"]),
-    ("fas fa-code", "Technical", ["HTML", "CSS", "JavaScript", "R Programming", "Database Management", "Web Design", "Networking", "Documentation", "Web Archiving", "Web Scraping"]),
-    ("fas fa-flask", "Research & Analysis", ["Literature Review", "Data Analysis", "Academic Writing", "Citation Management", "SPSS", "VOSviewer", "NVivo", "Quantitative Methods", "Qualitative Methods"]),
+    ("fas fa-code", "Technical", ["Python", "R", "HTML", "CSS", "JavaScript", "Database Management", "Web Design", "Networking", "Web Archiving", "Web Scraping"]),
+    ("fas fa-flask", "Research Methods", ["Systematic Review", "Policy Review", "Webometrics", "Survey Design", "SPSS", "VOSviewer", "NVivo", "Quantitative Methods", "Qualitative Methods", "Academic Writing"]),
 ]
 
 AWARDS = [
     ("Research", "fas fa-microscope", [
-        ("fas fa-medal", "Best Paper Award, International Conference on Information and Knowledge Management (IIKM 2025)"),
+        ("fas fa-medal", "Best Paper Award, International Conference on Information and Knowledge Management (IIKM 2025), for the GenAI policy review of academic publishers and universities"),
     ]),
     ("Academic Distinction", "fas fa-graduation-cap", [
         ("fas fa-medal", "Mohammad Shahidullah Memorial Gold Medal (Masters)"),
@@ -182,4 +259,15 @@ VOLUNTEER = [
         ("Amanuensis", "Anirban — an organization supporting blind students"),
         ("Social Work Volunteer", "Dhaka University Alumni Association (DUAA)"),
     ]),
+]
+
+JOURNEY = [
+    ("2013", "SSC", "Dr. Abu Bakar High School, Rajshahi", "GPA 4.81"),
+    ("2015", "HSC", "Kaliganj Haat Degree College, Rajshahi", "GPA 5.00"),
+    ("2015–19", "Bachelor's", "Information Science & Library Management, University of Dhaka", "CGPA 3.90"),
+    ("2017", "First automation project", "Begins a run of 12 library automation and digitization projects", "12 libraries"),
+    ("2020–21", "Master's + Gold Medal", "University of Dhaka, top of the cohort", "CGPA 3.97"),
+    ("2022", "Islamic University of Technology", "Assistant Cataloguer; Koha, website and automation for 100K+ items", "100K+ items"),
+    ("2025", "Best Paper, IIKM", "GenAI policy review of academic publishers and universities", "Award"),
+    ("2026", "PhD, University of Arizona", "Information Science; Graduate Teaching Associate for INFO 557", "Now"),
 ]
