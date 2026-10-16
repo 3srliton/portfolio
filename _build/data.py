@@ -17,15 +17,15 @@ SOCIALS = [
 
 # ---------------------------------------------------------------- research themes
 THEMES = {
-    "sos": dict(name="Science of Science", short="SciSci", color="#7c83ff", icon="fas fa-diagram-project",
+    "sos": dict(name="Science of Science", short="SciSci", color="#1f3a5f", icon="fas fa-diagram-project",
                 lead=True, blurb="How scholarly knowledge is produced, published and accessed: scholarly communication, publishing policy, webometrics and the shadow libraries people turn to when access is blocked."),
-    "aihe": dict(name="AI in Higher Education", short="AI + HE", color="#c3f53c", icon="fas fa-microchip",
+    "aihe": dict(name="AI in Higher Education", short="AI + HE", color="#7a2e2e", icon="fas fa-microchip",
                  lead=True, blurb="How generative AI is reshaping universities, publishers and libraries: institutional policy, AI-powered library services, and AI's effect on how students learn and perform."),
-    "ib": dict(name="Information Behavior", short="Info Behavior", color="#5ee7ff", icon="fas fa-people-arrows",
+    "ib": dict(name="Information Behavior", short="Info Behavior", color="#2f5d50", icon="fas fa-people-arrows",
                lead=False, blurb="How people seek, share and use information in everyday academic life."),
-    "mis": dict(name="Misinformation & Belief", short="Fake News", color="#ff7a90", icon="fas fa-shield-halved",
+    "mis": dict(name="Misinformation & Belief", short="Fake News", color="#8a5a2b", icon="fas fa-shield-halved",
                 lead=False, blurb="How the information people consume shapes beliefs, morality and trust."),
-    "dl": dict(name="Digital Libraries", short="Libraries", color="#ffb547", icon="fas fa-book-open-reader",
+    "dl": dict(name="Digital Libraries", short="Libraries", color="#5b6472", icon="fas fa-book-open-reader",
                lead=False, blurb="Low-cost, automated library systems that widen access in resource-constrained settings."),
 }
 

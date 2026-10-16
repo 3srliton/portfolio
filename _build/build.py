@@ -9,7 +9,7 @@ from data import *
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("SITE_OUT") or os.path.dirname(HERE)
 FA = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-FONTS = "https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+FONTS = "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap"
 
 PAGES = [
     ("index.html", "Home", "fas fa-house"),
@@ -91,12 +91,12 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
     url = SITE + "/" + ("" if file == "index.html" else file)
     mega = ""
     if cta:
-        mega = """<section class="mega ink"><canvas class="shader" aria-hidden="true"></canvas><div class="wrap" style="position:relative;z-index:2">
+        mega = """<section class="mega"><div class="wrap">
   <span class="eyebrow rv">Open to collaboration</span>
-  <h2 class="rv" style="--d:.1s;margin-top:1.4rem">Let's build<br><em>knowledge</em> together.</h2>
+  <h2 class="rv" style="margin-top:1rem">Collaboration &amp; <em>correspondence</em></h2><p class="mega-p">I welcome conversations about research collaboration, scholarly communication, AI in higher education and library digitization.</p>
   <div class="mega-row rv" style="--d:.2s">
-    <a class="mega-mail" href="mailto:%s" data-cursor="Email">%s %s</a>
-    <div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-lime magnetic" href="contact.html">Start a conversation %s</a><a class="btn btn-ghost magnetic" href="cv.html">View CV</a></div>
+    <a class="mega-mail" href="mailto:%s">%s %s</a>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn" href="contact.html">Start a conversation %s</a><a class="btn btn-ghost" href="cv.html">View CV</a></div>
   </div>
 </div></section>""" % (EMAIL, EMAIL, ic("fas fa-arrow-right"), arrow())
     flinks = "".join('<li><a href="%s">%s</a></li>' % (f, e(n)) for f, n, _ in PAGES[1:])
@@ -113,9 +113,8 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
 <meta property="og:type" content="website"><meta property="og:title" content="{full}"><meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}"><meta property="og:image" content="{site}/images/og-headshot.jpg">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@3srliton">
-<meta name="theme-color" content="#f3f1ea">
+<meta name="theme-color" content="#1c2b45">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script>try{{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t)}}catch(e){{}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
 <link href="{fa}" rel="stylesheet">
@@ -123,8 +122,6 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
 {extra}</head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor" aria-hidden="true"><span></span></div><div class="cursor-dot" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
 <header class="nav">
   <div class="nav-inner">
@@ -132,7 +129,6 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
     <nav class="nav-links" aria-label="Main">{nav}</nav>
     <div class="nav-tools">
       <button class="search-pill" type="button" data-palette aria-label="Search the site">{search}<span class="lbl">Search</span><span class="kbd">Ctrl K</span></button>
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch theme"><i class="fas fa-moon theme-dark-ic" aria-hidden="true"></i><i class="fas fa-sun theme-light-ic" aria-hidden="true"></i></button>
       <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="overlay"><i class="fas fa-bars-staggered" aria-hidden="true"></i></button>
     </div>
   </div>
@@ -142,7 +138,7 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
 {body}
 {mega}
 </main>
-<footer class="footer ink">
+<footer class="footer">
   <div class="wrap">
     <div class="f-grid">
       <div><a class="brand" href="index.html"><span class="mono-mark"><b>L</b></span><span class="brand-name">Md Liton Ali</span></a>
@@ -153,7 +149,6 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
     </div>
     <div class="f-bottom"><span>&copy; <span data-year>2026</span> Md Liton Ali</span><span>Press <span class="kbd">/</span> to search everything</span><a href="#main">Back to top ↑</a></div>
   </div>
-  <div class="wordmark" aria-hidden="true">Liton Ali</div>
 </footer>
 <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the site" aria-hidden="true">
   <div class="palette-box">
@@ -174,7 +169,7 @@ def phero(crumb, eyebrow, title_html, lede, meta=None):
     m = ""
     if meta:
         m = '<div class="phero-meta fade-up" style="--d:.55s">' + "".join('<div><strong>%s</strong><span>%s</span></div>' % (v, e(l)) for v, l in meta) + "</div>"
-    return """<section class="phero"><canvas class="shader" aria-hidden="true"></canvas>
+    return """<section class="phero">
   <div class="wrap">
     <div class="crumbs fade-up" style="--d:.1s"><a href="index.html">Home</a><span>/</span><span>%s</span></div>
     <div class="fade-up" style="--d:.2s;margin-top:1.6rem"><span class="eyebrow">%s</span></div>
@@ -189,7 +184,7 @@ def head(eyebrow, title_html, sub=None, side=""):
     s = ""
     if sub or side:
         s = '<div class="side rv" style="--d:.1s">%s%s</div>' % ("<p>%s</p>" % sub if sub else "", side)
-    return '<div class="sec-head"><div><span class="eyebrow rv" data-scramble>%s</span><h2 class="rv-clip">%s</h2></div>%s</div>' % (e(eyebrow), title_html, s)
+    return '<div class="sec-head"><div><span class="eyebrow">%s</span><h2>%s</h2></div>%s</div>' % (e(eyebrow), title_html, s)
 
 
 def theme_cards(with_counts=True):
@@ -199,10 +194,10 @@ def theme_cards(with_counts=True):
         cls = "lead" if t["lead"] else "sub"
         badge = '<span class="lead-badge">Lead focus</span>' if t["lead"] else '<span class="lead-badge">Related</span>'
         art = ""
-        if t["lead"]:
+        if False:
             art = '<svg class="theme-art" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="%s" stroke-width="1">%s</g></svg>' % (
                 t["color"], "".join('<circle cx="100" cy="100" r="%d" opacity="%.2f"/>' % (r, 1 - r / 110) for r in range(14, 110, 14)))
-        out.append("""<a class="spot theme-card %s rv" href="research.html#publications" style="--c:%s;--d:%.2fs" data-cursor="Explore">%s
+        out.append("""<a class="spot theme-card %s rv" href="research.html#publications" style="--c:%s;--d:%.2fs">%s
   <div class="row"><span class="ic">%s</span>%s</div>
   <div><h3>%s</h3><p style="margin-top:.8rem">%s</p></div>
   <div class="row"><span class="cnt">%d work%s</span><span class="cnt">0%d</span></div>
@@ -221,56 +216,39 @@ def now_list():
 
 # ---------------------------------------------------------------- HOME
 def home():
-    words = ["Information Science Researcher", "Science of Science", "AI in Higher Education", "Graduate Teaching Associate"]
-    tick_words = ["Science of Science", "AI in Higher Education", "Scholarly Communication", "Information Behavior", "Generative AI Policy", "Webometrics", "Digital Libraries", "Misinformation"]
-    tick = "".join('<span class="ticker-item">%s<i>✦</i></span>' % e(w) for w in tick_words)
-    manifesto = ("I study how *knowledge* is produced, shared and accessed, and how *generative AI* is reshaping universities, publishers and libraries. "
-                 "A decade of automating libraries in Bangladesh taught me one thing: *access* changes everything.")
-    mw = []
-    for w in manifesto.split(" "):
-        em = w.startswith("*")
-        w2 = w.replace("*", "")
-        mw.append('<span class="w%s">%s</span>' % (" em" if em else "", e(w2)))
-    rail = ""
-    for p in sorted(PUBLISHED, key=lambda x: -x["year"]):
-        c = THEMES[p["themes"][0]]["color"]
-        aw = '<span class="tag tag--award">%s %s</span>' % (ic("fas fa-medal"), e(p["award"])) if p.get("award") else '<span class="tag">%s</span>' % TYPE_LABEL[p["type"]]
-        rail += """<a class="spot paper-tile" href="research.html#%s" style="--c:%s" data-cursor="Read"><div class="top"><span class="yr">%s</span>%s</div>
-<h3>%s</h3><p>%s</p><div class="pub-tags">%s</div><div class="venue">%s</div></a>""" % (p["id"], c, p["year"], aw, e(p["title"]), e(p["summary"]), theme_tags(p), e(p["venue"]))
-    jcards = ""
-    for k, (y, t, d, kk) in enumerate(JOURNEY):
-        last = k == len(JOURNEY) - 1
-        jcards += '<article class="spot j-card%s"><div class="y">%s</div><div><span class="k">%s</span><h3 style="margin-top:.6rem">%s</h3><p>%s</p></div></article>' % (
-            " now-card" if last else "", e(y).replace("–", "<em>–</em>"), e(kk), e(t), e(d))
-    honors = "".join('<span class="ticker-item">%s<i>✦</i></span>' % e(w) for w in ["Best Paper Award, IIKM 2025", "Gold Medal", "Provost Award", "Dean's Merit List", "UGC Scholarship", "Mitsubishi UFJ Scholarship", "Blood Donor ×12"])
-    stats = [("100", "K", "Library items catalogued and managed"), ("15", "+", "Libraries automated across Bangladesh"),
-             (str(RESPONDENTS), "", "People surveyed across my published studies"), ("16", "", "Awards, medals and scholarships")]
-    st = "".join('<div class="stat rv" style="--d:%.2fs"><span class="idx">0%d</span><div class="num"><span data-count="%s">%s</span><sup>%s</sup></div><p class="lbl">%s</p></div>' % (
-        k * 0.08, k + 1, v, v, s, e(l)) for k, (v, s, l) in enumerate(stats))
+    recent = sorted(PUBLISHED, key=lambda x: -x["year"])[:4]
+    plist = ""
+    for k, p in enumerate(recent):
+        aw = ' <span class="tag tag--award">%s</span>' % e(p["award"]) if p.get("award") else ""
+        plist += '<li class="rv"><span class="pl-yr">%s</span><div><a href="research.html#%s">%s</a><p class="pl-meta">%s · <em>%s</em>%s</p></div></li>' % (
+            p["year"], p["id"], e(p["title"]), e(p["authors"]), e(p["venue"]), aw)
+    chron = "".join('<li class="rv"><span class="c-yr">%s</span><h3>%s</h3><p>%s</p></li>' % (e(y), e(t), e(d)) for y, t, d, kk in JOURNEY)
+    stats = [("100K+", "Library items catalogued and managed"), ("15+", "Libraries automated across Bangladesh"),
+             (str(RESPONDENTS), "Survey respondents across published studies"), ("16", "Awards, medals and scholarships")]
+    st = "".join('<div class="stat rv"><div class="num">%s</div><p class="lbl">%s</p></div>' % (v, e(l)) for v, l in stats)
     explore = [
-        ("research.html", "w8", "02", "Research", "Papers, a live research map, and what I'm working on now.", "iikm4b"),
-        ("about.html", "", "01", "About", "Story, skills and education.", "headshot-ash"),
-        ("experience.html", "", "03", "Experience", "Teaching, cataloguing and 12 field projects.", "kohat"),
-        ("honors.html", "", "04", "Honors", "Medals, scholarships, gallery.", "gold"),
-        ("service.html", "", "05", "Service", "ASIS&T leadership, peer review, volunteering.", "sympo"),
-        ("cv.html", "w6", "06", "CV", "Everything on one printable page.", None),
-        ("contact.html", "w6", "07", "Contact", "Collaborations, talks, questions.", None),
+        ("research.html", "Research", "Publications, research map and current projects.", "iikm4b"),
+        ("about.html", "About", "Biography, skills and education.", "headshot-ash"),
+        ("experience.html", "Experience", "Teaching, cataloguing and field projects.", "kohat"),
+        ("honors.html", "Honors", "Medals, scholarships and gallery.", "gold"),
+        ("service.html", "Service", "Leadership, memberships and volunteering.", "sympo"),
+        ("cv.html", "Curriculum Vitae", "The complete record on one page.", "iikm3"),
     ]
-    ex = "".join('<a class="spot ex %s rv" href="%s" data-cursor="Open">%s<span class="n">%s</span><div class="foot"><div><h3>%s</h3><p>%s</p></div><span class="arrow">%s</span></div></a>' % (
-        w, f, ('<div class="bgimg"><img src="images/web/%s.webp" alt="" decoding="async"></div>' % img) if img else "", n, e(t), e(d), ic("fas fa-arrow-right")) for f, w, n, t, d, img in explore)
+    ex = "".join('<a class="ex rv" href="%s"><div class="ex-img"><img src="images/web/%s.webp" alt="" loading="lazy"></div><div class="ex-body"><h3>%s</h3><p>%s</p><span class="link-u">View %s</span></div></a>' % (
+        f, img, e(t), e(d), ic("fas fa-arrow-right")) for f, t, d, img in explore)
+    links = "".join('<a href="%s" target="_blank" rel="noopener">%s</a>' % (u, e(n)) for n, c, u in [SOCIALS[1], SOCIALS[0], SOCIALS[2]])
     body = """
 <section class="hero">
-  <canvas class="shader" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="status fade-up" style="--d:.15s"><span class="pulse"></span>PhD Student · University of Arizona</span>
-      <h1 aria-label="Md Liton Ali"><span class="ln split-in" aria-hidden="true">{n1}</span><span class="ln split-in it" aria-hidden="true">{n2}</span></h1>
-      <p class="hero-role fade-up" style="--d:.65s"><span>&gt;</span><b data-words='{words}'>{w0}</b></p>
-      <p class="hero-lede fade-up" style="--d:.75s">I research the <strong>science of science</strong> and <strong>AI in higher education</strong>: how knowledge is published and accessed, and how generative AI is changing universities. Before that, nearly a decade automating libraries.</p>
-      <div class="hero-actions fade-up" style="--d:.85s"><a class="btn magnetic" href="research.html">Explore my research {arr}</a><a class="btn btn-ghost magnetic" href="cv.html">View CV</a></div>
-      <div class="hero-socials fade-up" style="--d:.95s">{socials}</div>
+      <p class="eyebrow">PhD Student · Information Science · University of Arizona</p>
+      <h1>Md Liton Ali</h1>
+      <p class="hero-sub">Researcher in the science of science and AI in higher education</p>
+      <p class="hero-lede">I study how scholarly knowledge is produced, published and accessed, and how generative AI is reshaping universities, publishers and libraries. My research builds on nearly a decade of library automation and digital service work in Bangladesh.</p>
+      <div class="hero-actions"><a class="btn" href="research.html">View research</a><a class="btn btn-ghost" href="cv.html">Curriculum vitae</a></div>
+      <p class="hero-links"><a href="mailto:{email}">{email}</a>{links}</p>
     </div>
-    <div class="stage fade-up" style="--d:.3s">
+    <div class="stage">
       <figure class="portrait-frame"><img src="images/web/headshot-ash.webp" alt="Portrait of Md Liton Ali" width="880" height="1100" fetchpriority="high"></figure>
       <ul class="hero-facts" aria-label="Highlights">
         <li><span>Best Paper Award</span><span>IIKM 2025</span></li>
@@ -279,20 +257,17 @@ def home():
       </ul>
     </div>
   </div>
-  <div class="wrap hero-foot fade-up" style="--d:1.1s"><span class="scroll-ind">SCROLL<span></span></span><span class="coords-txt">32.23° N · 110.95° W — Tucson, Arizona</span><span data-localtime></span></div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-track">{tick}{tick}</div></div>
-
-<section class="sec">
-  <div class="wrap">
-    <span class="eyebrow rv" data-scramble>Research statement</span>
-    <p class="manifesto" style="margin-top:2rem">{manifesto}</p>
-    <div class="manifesto-meta rv"><a class="link-u" href="about.html">More about me {ar}</a><span class="mono" style="font-size:.8rem">— Md Liton Ali</span></div>
+<section class="sec sec--tight band">
+  <div class="wrap statement rv">
+    <p class="eyebrow">Research statement</p>
+    <blockquote>I study how knowledge is produced, shared and accessed, and how generative AI is reshaping universities, publishers and libraries. A decade of automating libraries in Bangladesh taught me that access changes everything.</blockquote>
+    <a class="link-u" href="about.html">Read my biography {ar}</a>
   </div>
 </section>
 
-<section class="sec--tight"><div class="wrap"><div class="stats">{stats}</div></div></section>
+<section class="sec sec--tight"><div class="wrap"><div class="stats">{stats}</div></div></section>
 
 <section class="sec">
   <div class="wrap">
@@ -301,25 +276,24 @@ def home():
   </div>
 </section>
 
-<section class="sec" style="padding-top:0">
+<section class="sec band">
   <div class="wrap">
     {h2}
-    <div class="rail" id="rail1" tabindex="0" aria-label="Selected publications">{rail}</div>
+    <ol class="publist">{plist}</ol>
   </div>
 </section>
 
-<section class="sec ink">
+<section class="sec">
   <div class="wrap">
     {h3}
     {now}
   </div>
 </section>
 
-<section class="journey ink" style="--steps:{nj}">
-  <div class="journey-pin">
-    <div class="wrap journey-head">{h4}</div>
-    <div class="journey-track">{jcards}</div>
-    <div class="wrap"><div class="journey-bar"><span></span></div></div>
+<section class="sec band">
+  <div class="wrap">
+    {h4}
+    <ol class="chron">{chron}</ol>
   </div>
 </section>
 
@@ -329,18 +303,13 @@ def home():
     <div class="explore">{ex}</div>
   </div>
 </section>
-
-<div class="ticker ticker--rev ink" aria-hidden="true"><div class="ticker-track">{honors}{honors}</div></div>
-""".format(
-        n1=split("Md Liton"), n2=split("Ali.", 8), words=e(json.dumps(words)), w0=e(words[0]), arr=arrow(), socials="".join(
-            '<a href="%s" target="_blank" rel="noopener" aria-label="%s">%s</a>' % (u, e(n), ic(c)) for n, c, u in SOCIALS[:4]),
-        i1=ic("fas fa-medal"), i2=ic("fas fa-user-tie"), i3=ic("fas fa-award"), tick=tick, manifesto=" ".join(mw), ar=ic("fas fa-arrow-right"),
-        stats=st, h1=head("Research focus", "Two questions, <em>one</em> lens.", "My PhD centres on the science of science and AI in higher education, with three related threads running through my published work."),
-        themes=theme_cards(),
-        h2=head("Selected work", "Recent <em>papers</em>", None, '<div class="rail-ctrl"><button class="icon-btn" type="button" data-rail="rail1" data-dir="prev" aria-label="Previous">%s</button><button class="icon-btn" type="button" data-rail="rail1" data-dir="next" aria-label="Next">%s</button><a class="btn btn-ghost magnetic" href="research.html#publications">All work %s</a></div>' % (ic("fas fa-arrow-left"), ic("fas fa-arrow-right"), arrow())),
-        rail=rail, h3=head("Now", "On my <em>desk</em>", "Projects in progress during my first year of the PhD."), now=now_list(),
-        nj=len(JOURNEY), h4=head("Journey", "From Rajshahi <em>to</em> Tucson"), jcards=jcards,
-        h5=head("Index", "Explore the <em>site</em>"), ex=ex, honors=honors)
+""".format(email=EMAIL, links=links, ar=ic("fas fa-arrow-right"), stats=st,
+           h1=head("Research focus", "Areas of inquiry", "My doctoral research centres on the science of science and AI in higher education, with related work in information behavior, misinformation and digital libraries."),
+           themes=theme_cards(),
+           h2=head("Publications", "Recent work", None, '<a class="btn btn-ghost" href="research.html#publications">All publications</a>'), plist=plist,
+           h3=head("Current projects", "Work in progress"), now=now_list(),
+           h4=head("Timeline", "Academic and professional path"), chron=chron,
+           h5=head("Explore", "More about my work"), ex=ex)
     ld = {"@context": "https://schema.org", "@type": "Person", "name": "Md Liton Ali", "url": SITE, "image": SITE + "/images/og-headshot.jpg",
           "jobTitle": "PhD Student, Information Science", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Arizona"},
           "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of Dhaka"}, "email": "mailto:" + EMAIL,
@@ -402,11 +371,11 @@ def research():
     legend = "".join('<span class="tag"><span class="tag-dot" style="--c:%s"></span>%s</span>' % (t["color"], e(t["short"])) for t in THEMES.values())
     body = """
 {hero}
-<section class="sec ink">
+<section class="sec band">
   <div class="wrap">
     {h1}
     <div class="universe-wrap rv">
-      <span class="u-hint">Hover · drag · click a node</span>
+      <span class="u-hint">Hover to trace links · click a paper to open it</span>
       <svg class="universe" id="universe" role="img" aria-label="Interactive map linking each paper to its research themes"></svg>
       <div class="u-tip" id="utip"></div>
       <div class="u-legend">{legend}</div>
@@ -427,7 +396,7 @@ def research():
         <h2>GenAI: stay out of it, or find a <em class="hl">suitable way</em> in?</h2>
         <p>A policy review of how academic publishers and universities are responding to generative AI. It asks whether institutions should keep GenAI out of scholarship altogether or find suitable ways to incorporate it, and it won the Best Paper Award at the International Conference on Information and Knowledge Management (IIKM) in 2025.</p>
         <ul class="checks"><li>{chk}<span>Bridges both lead themes: AI in higher education and the science of science</span></li><li>{chk}<span>Covers both sides of scholarship: publishers and universities</span></li><li>{chk}<span>Published in the IIKM proceedings, 4(1), 65–66</span></li></ul>
-        <a class="btn magnetic" href="#genai-policy" data-open="genai-policy">Read the summary {arr}</a>
+        <a class="btn" href="#genai-policy" data-open="genai-policy">Read the summary {arr}</a>
       </div>
     </div>
   </div>
@@ -456,7 +425,7 @@ def research():
     <div class="grid g3">
       <div class="spot box rv"><span class="ic">{i1}</span><h3>Zero-budget digital libraries</h3><p>An ongoing framework that lets school and college libraries build digital services with free tools and minimal technical skill.</p></div>
       <div class="spot box rv" style="--d:.06s"><span class="ic">{i2}</span><h3>Peer reviewer</h3><p>Global Knowledge, Memory and Communication, Emerald Publishing.</p></div>
-      <a class="spot box rv" style="--d:.12s" href="{scholar}" target="_blank" rel="noopener" data-cursor="Open"><span class="ic">{i3}</span><h3>Google Scholar</h3><p>Follow new work and citations as they appear. Interests: Information Behavior, Science of Science, Fake News, Artificial Intelligence, Education.</p></a>
+      <a class="spot box rv" style="--d:.12s" href="{scholar}" target="_blank" rel="noopener"><span class="ic">{i3}</span><h3>Google Scholar</h3><p>Follow new work and citations as they appear. Interests: Information Behavior, Science of Science, Fake News, Artificial Intelligence, Education.</p></a>
     </div>
   </div>
 </section>
@@ -492,15 +461,15 @@ def about():
 {hero}
 <section class="sec">
   <div class="wrap bio">
-    <div class="bio-photo rv"><div class="frame" data-tilt><img src="images/web/headshot-ash.webp" alt="Portrait of Md Liton Ali" width="880" height="1100"></div><div class="cap"><span>Tucson, Arizona</span><span>2026</span></div></div>
+    <div class="bio-photo rv"><div class="frame"><img src="images/web/headshot-ash.webp" alt="Portrait of Md Liton Ali" width="880" height="1100"></div><div class="cap"><span>Tucson, Arizona</span><span>2026</span></div></div>
     <div class="bio-text">
-      <span class="eyebrow rv" data-scramble>Biography</span>
+      <span class="eyebrow rv">Biography</span>
       <p class="lead rv">Md Liton Ali is a PhD student in Information Science at the <em>University of Arizona</em>, studying how knowledge moves, and how AI is changing that.</p>
       <p class="rv">His doctoral research centres on the <strong>science of science</strong> and <strong>AI in higher education</strong>: how scholarship is published and accessed, how universities and publishers govern generative AI, and how AI tools affect the way students learn and perform. He also serves as a Graduate Teaching Associate for INFO 557: Neural Networks.</p>
       <p class="rv">Before the PhD, he spent nearly a decade across <strong>more than 15 library and information institutions</strong> in Bangladesh. At the <strong>Islamic University of Technology (IUT)</strong> he served as Assistant Cataloguer and later in the International Affairs and External Communication Office, deploying Koha-ILS, redesigning the library's digital presence, managing 100,000+ items and supporting international students.</p>
       <p class="rv">He holds Bachelor's and Master's degrees in Information Science and Library Management from the University of Dhaka (Masters CGPA 3.97/4.00), where he received the Mohammad Shahidullah Memorial Gold Medal, the Dean's Award of Honour and the Provost Award of Excellence. His policy review of generative AI across academic publishers and universities won the <strong>Best Paper Award at IIKM 2025</strong>.</p>
       <div class="facts">{fx}</div>
-      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem" class="rv"><a class="btn magnetic" href="research.html">Research {arr}</a><a class="btn btn-ghost magnetic" href="cv.html">Full CV</a></div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem" class="rv"><a class="btn" href="research.html">Research {arr}</a><a class="btn btn-ghost" href="cv.html">Full CV</a></div>
     </div>
   </div>
 </section>
@@ -536,7 +505,7 @@ def experience():
 </div></section>
 <section class="sec" id="training" style="padding-top:0"><div class="wrap">{h3}<div class="train-grid">{tr}</div></div></section>
 """.format(hero=phero("Experience", "Career", "Practice that turns libraries <em>digital</em>.", "Teaching neural networks in Arizona, cataloguing 100,000 items in Bangladesh, and automating a dozen libraries along the way.", [("5", "Roles"), ("12", "Field projects"), ("12", "Trainings")]),
-           h1=head("Roles", "Where I've <em>worked</em>", None, '<button class="btn btn-ghost magnetic" id="expandAll" type="button"><span>Expand all</span></button>'), xp=xp,
+           h1=head("Roles", "Where I've <em>worked</em>", None, '<button class="btn btn-ghost" id="expandAll" type="button"><span>Expand all</span></button>'), xp=xp,
            h2=head("Field engagement", "Twelve libraries, <em>one</em> timeline", "Automation and digitization projects from 2017 to 2024."), yrs=yrs,
            scale="".join("<span>%d</span>" % y for y in range(y0, y1)), rows=rows, h3=head("Learning", "Training &amp; <em>courses</em>"), tr=tr)
     return layout("experience.html", "Experience", "Professional experience, library automation projects and training of Md Liton Ali.", body)
@@ -548,9 +517,9 @@ def honors():
     medals = [("fas fa-medal", "Gold Medal", "Mohammad Shahidullah Memorial Gold Medal, top of the Masters cohort, University of Dhaka."),
               ("fas fa-file-lines", "Best Paper, IIKM 2025", "For the policy review of generative AI across academic publishers and universities."),
               ("fas fa-trophy", "Provost Award", "Provost Award of Academic Excellence, alongside Dean's Merit List honours at both degree levels.")]
-    md = "".join('<div class="spot medal rv" data-tilt style="--d:%.2fs">%s<div><h3>%s</h3><p>%s</p></div></div>' % (k * .08, ic(c), e(t), e(d)) for k, (c, t, d) in enumerate(medals))
+    md = "".join('<div class="spot medal rv" style="--d:%.2fs">%s<div><h3>%s</h3><p>%s</p></div></div>' % (k * .08, ic(c), e(t), e(d)) for k, (c, t, d) in enumerate(medals))
     aw = "".join('<div class="spot aw rv" style="--d:%.2fs"><h3>%s<small>%02d</small></h3><ul>%s</ul></div>' % (k * .06, e(g), len(items), "".join("<li>%s<span>%s</span></li>" % (ic(c), e(t)) for c, t in items)) for k, (g, _, items) in enumerate(AWARDS))
-    gal = "".join('<button class="shot rv" type="button" data-full="images/web/%s.webp" data-title="%s" data-desc="%s" data-cursor="View"><img src="images/web/%s.webp" alt="%s" loading="lazy"><div class="cap"><h4>%s</h4><p>%s</p></div></button>' % (
+    gal = "".join('<button class="shot rv" type="button" data-full="images/web/%s.webp" data-title="%s" data-desc="%s"><img src="images/web/%s.webp" alt="%s" loading="lazy"><div class="cap"><h4>%s</h4><p>%s</p></div></button>' % (
         f, e(t), e(d), f, e(t), e(t), e(d)) for f, t, d in GALLERY)
     body = """
 {hero}
@@ -570,7 +539,14 @@ def honors():
 # ---------------------------------------------------------------- SERVICE
 def service():
     roles = "".join('<div class="spot role%s rv" style="--d:%.2fs"><span class="when">%s</span><div><h3>%s</h3><p>%s</p></div></div>' % (" lead" if lead else "", k * .07, e(w), e(t), e(o)) for k, (w, t, o, lead) in enumerate(LEAD_ROLES))
-    orgs = "".join('<div class="spot org rv" style="--d:%.2fs"><span class="ab">%s</span><span class="nm">%s</span></div>' % ((k % 4) * .05, e(a), e(n)) for k, (a, n) in enumerate(MEMBERSHIPS))
+    def logo(abbr):
+        slug = re.sub(r"[^a-z]", "", abbr.lower().replace("&", "and"))
+        for ext in ("svg", "png", "webp", "jpg", "jpeg"):
+            p = os.path.join("images", "logos", "%s.%s" % (slug, ext))
+            if os.path.exists(os.path.join(OUT, p)):
+                return '<span class="ab ab--img"><img src="%s" alt="%s logo" loading="lazy"></span>' % (p.replace(os.sep, "/"), e(abbr))
+        return '<span class="ab">%s</span>' % e(abbr)
+    orgs = "".join('<div class="org rv">%s<span class="nm"><strong>%s</strong>%s</span></div>' % (logo(a), e(a), e(n)) for a, n in MEMBERSHIPS)
     vols = "".join('<div class="rv" style="--d:%.2fs"><h3>%s%s</h3><ul>%s</ul></div>' % (k * .07, ic(c), e(g), "".join("<li><strong>%s</strong><span>%s</span></li>" % (e(r), e(o)) for r, o in items)) for k, (g, c, items) in enumerate(VOLUNTEER))
     n = sum(len(v[2]) for v in VOLUNTEER) + len(LEAD_ROLES)
     body = """
@@ -604,7 +580,7 @@ def cv():
     body = """
 {hero}
 <section class="sec"><div class="wrap cv">
-  <nav class="cv-toc" aria-label="CV sections">{toc}<button class="btn btn-lime" id="printCv" type="button">{pr} Print / PDF</button></nav>
+  <nav class="cv-toc" aria-label="CV sections">{toc}<button class="btn" id="printCv" type="button">{pr} Print / PDF</button></nav>
   <article class="cv-doc rv">
     <header class="cv-h"><div><h2>Md Liton Ali</h2><p>PhD Student in Information Science, University of Arizona</p></div>
       <div class="cv-contact"><a href="mailto:{email}">{email}</a><span>{phone} (text only)</span><a href="{site}">www.litonali.com</a><a href="{scholar}">Google Scholar</a></div></header>
@@ -636,7 +612,7 @@ def contact():
 {hero}
 <section class="sec"><div class="wrap contact">
   <div>
-    <span class="eyebrow rv" data-scramble>Direct lines</span>
+    <span class="eyebrow rv">Direct lines</span>
     <div class="rv" style="margin-top:1.4rem">
       <div class="c-line"><div><small>Email</small><a href="mailto:{email}">{email}</a></div><button class="copy" type="button" data-copy="{email}" aria-label="Copy email">{cp}</button></div>
       <div class="c-line"><div><small>Phone · text only</small><span class="v">{phone}</span></div><button class="copy" type="button" data-copy="{phone}" aria-label="Copy phone number">{cp}</button></div>
@@ -658,7 +634,7 @@ def contact():
         <fieldset class="fg full"><legend class="sr-only">Topic</legend><div class="topics">{tp}</div></fieldset>
         <div class="fg full"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message">Your message *</label><span class="err">Please write a message.</span></div>
       </div>
-      <div class="f-foot"><small>* required</small><button class="btn btn-lime magnetic" type="submit">Send message {arr}</button></div>
+      <div class="f-foot"><small>* required</small><button class="btn" type="submit">Send message {arr}</button></div>
       <div class="status-msg" id="formStatus" role="status" aria-live="polite"></div>
     </form>
   </div>
@@ -714,7 +690,7 @@ def graph():
     nodes = [dict(id=tid, kind="theme", label=t["name"], color=t["color"], lead=t["lead"], title=t["name"], sub=t["blurb"][:90] + "…") for tid, t in THEMES.items()]
     links = [["sos", "aihe"]]
     for p in PUBS:
-        nodes.append(dict(id=p["id"], kind="paper", label=p["title"], title=p["title"], year=str(p["year"] or "—"), color=THEMES[p["themes"][0]]["color"],
+        nodes.append(dict(id=p["id"], kind="paper", label=p["title"], title=p["title"], year=str(p["year"] or "In review"), color=THEMES[p["themes"][0]]["color"],
                           sub="%s · %s%s" % (TYPE_LABEL[p["type"]], p["year"] or "", " · Best Paper" if p.get("award") else ""), w=2 if p.get("award") else (1 if p["type"] == "journal" else 0)))
         for t in p["themes"]:
             links.append([p["id"], t])

@@ -335,7 +335,7 @@ gl_FragColor=vec4(c,1.);}`;
     // drag
     let drag = null;
     svg.addEventListener('pointerdown', (e) => { const g = e.target.closest('.node'); if (!g) return; drag = nodes.find((n) => n.el === g); svg.setPointerCapture(e.pointerId); });
-    svg.addEventListener('pointermove', (e) => { if (!drag) return; const b = svg.getBoundingClientRect(); drag.x = (e.clientX - b.left) * (W / b.width); drag.y = (e.clientY - b.top) * (H / b.height); drag.vx = drag.vy = 0; alpha = Math.max(alpha, 0.3); });
+    svg.addEventListener('pointermove', (e) => { if (!drag) return; const b = svg.getBoundingClientRect(); drag.x = (e.clientX - b.left) * (W / b.width); drag.y = (e.clientY - b.top) * (H / b.height); drag.vx = drag.vy = 0; render(); });
     svg.addEventListener('pointerup', () => { drag = null; });
     let alpha = 1;
     const stepSim = () => {
@@ -347,9 +347,9 @@ gl_FragColor=vec4(c,1.);}`;
       links.forEach((l) => { const dx = l.t.x - l.s.x, dy = l.t.y - l.s.y, d = Math.hypot(dx, dy) || 1; const target = l.s.kind === 'theme' && l.t.kind === 'theme' ? Math.min(W * 0.32, 340) : Math.min(W * 0.16, 150); const f = (d - target) * 0.012 * alpha; l.s.vx += dx / d * f; l.s.vy += dy / d * f; l.t.vx -= dx / d * f; l.t.vy -= dy / d * f; });
       nodes.forEach((n) => {
         n.vx += (W / 2 - n.x) * 0.0012 * alpha; n.vy += (H / 2 - n.y) * 0.0025 * alpha;
-        if (!RM) { n.vx += Math.sin(performance.now() / 2000 + n.x) * 0.02; n.vy += Math.cos(performance.now() / 2300 + n.y) * 0.02; }
+        
         if (n === drag || n.fixed) { n.vx = n.vy = 0; } n.vx *= 0.82; n.vy *= 0.82; n.x += n.vx; n.y += n.vy;
-        const pad = n.r0 + 30; n.x = Math.max(pad, Math.min(W - pad, n.x)); n.y = Math.max(pad, Math.min(H - pad - 20, n.y));
+        const pad = n.r0 + 30; n.x = Math.max(pad, Math.min(W - pad, n.x)); n.y = Math.max(pad + 26, Math.min(H - pad - 34, n.y));
       });
       alpha = Math.max(alpha * 0.995, 0.05);
     };
@@ -357,9 +357,8 @@ gl_FragColor=vec4(c,1.);}`;
       links.forEach((l) => { l.el.setAttribute('x1', l.s.x); l.el.setAttribute('y1', l.s.y); l.el.setAttribute('x2', l.t.x); l.el.setAttribute('y2', l.t.y); });
       nodes.forEach((n) => n.el.setAttribute('transform', `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`));
     };
-    if (RM) { for (let i = 0; i < 400; i++) stepSim(); render(); }
-    else { for (let i = 0; i < 120; i++) stepSim(); const loop = () => { stepSim(); render(); requestAnimationFrame(loop); }; loop(); }
-    addEventListener('resize', () => { W = svg.clientWidth; H = svg.clientHeight; svg.setAttribute('viewBox', `0 0 ${W} ${H}`); alpha = 0.6; });
+    for (let i = 0; i < 500; i++) stepSim(); render();
+    let urt; addEventListener('resize', () => { clearTimeout(urt); urt = setTimeout(() => { W = svg.clientWidth; H = svg.clientHeight; svg.setAttribute('viewBox', `0 0 ${W} ${H}`); alpha = 0.6; for (let i = 0; i < 200; i++) stepSim(); render(); }, 200); });
   }
 
   /* ---------- lightbox ---------- */
