@@ -189,9 +189,9 @@ AWARDS = [
     ]),
     ("Academic Distinction", "fas fa-graduation-cap", [
         ("fas fa-medal", "Mohammad Shahidullah Memorial Gold Medal (Masters)"),
-        ("fas fa-trophy", "Provost Award of Academic Excellence"),
-        ("fas fa-star", "Dean's Merit List of Honour (Masters)"),
-        ("fas fa-star", "Dean's Merit List of Honour (Undergraduate)"),
+        ("fas fa-trophy", "Dean's Merit List of Honour (Masters)"),
+        ("fas fa-trophy", "Dean's Merit List of Honour (Undergraduate)"),
+        ("fas fa-star", "Provost Award of Academic Excellence"),
         ("fas fa-book", "Book Grant from the University of Dhaka for outstanding results in Masters"),
     ]),
     ("Scholarships", "fas fa-hand-holding-dollar", [

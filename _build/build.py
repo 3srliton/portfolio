@@ -467,7 +467,7 @@ def about():
       <p class="lead rv">Md Liton Ali is a PhD student in Information Science at the <em>University of Arizona</em>, studying how knowledge moves, and how AI is changing that.</p>
       <p class="rv">His doctoral research centres on the <strong>science of science</strong> and <strong>AI in higher education</strong>: how scholarship is published and accessed, how universities and publishers govern generative AI, and how AI tools affect the way students learn and perform. He also serves as a Graduate Teaching Associate for INFO 557: Neural Networks.</p>
       <p class="rv">Before the PhD, he spent nearly a decade across <strong>more than 15 library and information institutions</strong> in Bangladesh. At the <strong>Islamic University of Technology (IUT)</strong> he served as Assistant Cataloguer and later in the International Affairs and External Communication Office, deploying Koha-ILS, redesigning the library's digital presence, managing 100,000+ items and supporting international students.</p>
-      <p class="rv">He holds Bachelor's and Master's degrees in Information Science and Library Management from the University of Dhaka (Masters CGPA 3.97/4.00), where he received the Mohammad Shahidullah Memorial Gold Medal, the Dean's Award of Honour and the Provost Award of Excellence. His policy review of generative AI across academic publishers and universities won the <strong>Best Paper Award at IIKM 2025</strong>.</p>
+      <p class="rv">He holds Bachelor's and Master's degrees in Information Science and Library Management from the University of Dhaka (Masters CGPA 3.97/4.00), where he received the Mohammad Shahidullah Memorial Gold Medal, the Dean's Award of Honour at both degree levels and the Provost Award of Academic Excellence. His policy review of generative AI across academic publishers and universities won the <strong>Best Paper Award at IIKM 2025</strong>.</p>
       <div class="facts">{fx}</div>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem" class="rv"><a class="btn" href="research.html">Research {arr}</a><a class="btn btn-ghost" href="cv.html">Full CV</a></div>
     </div>
@@ -516,7 +516,7 @@ def honors():
     total = sum(len(g[2]) for g in AWARDS)
     medals = [("fas fa-medal", "Gold Medal", "Mohammad Shahidullah Memorial Gold Medal, top of the Masters cohort, University of Dhaka."),
               ("fas fa-file-lines", "Best Paper, IIKM 2025", "For the policy review of generative AI across academic publishers and universities."),
-              ("fas fa-trophy", "Provost Award", "Provost Award of Academic Excellence, alongside Dean's Merit List honours at both degree levels.")]
+              ("fas fa-trophy", "Dean's Award", "Dean's Merit List of Honour at both the Bachelor's and Master's levels, alongside the Provost Award of Academic Excellence.")]
     md = "".join('<div class="spot medal rv" style="--d:%.2fs">%s<div><h3>%s</h3><p>%s</p></div></div>' % (k * .08, ic(c), e(t), e(d)) for k, (c, t, d) in enumerate(medals))
     aw = "".join('<div class="spot aw rv" style="--d:%.2fs"><h3>%s<small>%02d</small></h3><ul>%s</ul></div>' % (k * .06, e(g), len(items), "".join("<li>%s<span>%s</span></li>" % (ic(c), e(t)) for c, t in items)) for k, (g, _, items) in enumerate(AWARDS))
     gal = "".join('<button class="shot rv" type="button" data-full="images/web/%s.webp" data-title="%s" data-desc="%s"><img src="images/web/%s.webp" alt="%s" loading="lazy"><div class="cap"><h4>%s</h4><p>%s</p></div></button>' % (
