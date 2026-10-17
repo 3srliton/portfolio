@@ -106,7 +106,7 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
     <div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn" href="contact.html">Start a conversation %s</a><a class="btn btn-ghost" href="cv.html">View CV</a></div>
   </div>
 </div></section>""" % (EMAIL, EMAIL, ic("fas fa-arrow-right"), arrow())
-    flinks = "".join('<li><a href="%s">%s</a></li>' % (f, e(n)) for f, n, _ in PAGES[1:])
+    flinks = "".join('<li><a href="%s">%s</a></li>' % (f, e(n)) for f, n, _ in PAGES[1:] if f not in ("research.html", "cv.html", "contact.html"))
     fsoc = "".join('<li><a href="%s" target="_blank" rel="noopener">%s</a></li>' % (u, e(n)) for n, c, u in SOCIALS[:4])
     return """<!DOCTYPE html>
 <html lang="en" class="no-js" data-theme="light">

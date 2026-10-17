@@ -220,18 +220,18 @@ a.theme-card:hover { box-shadow: 0 6px 20px -12px rgba(28, 43, 69, .35); }
 .mega .btn-ghost:hover { background: rgba(255, 255, 255, .08); color: #fff; }
 
 /* Footer */
-.footer { background: #15213a; color: #b9c2d2; padding: 3rem 0 0; }
-.f-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; }
+.footer { background: #15213a; color: #b9c2d2; padding: 2rem 0 0; }
+.f-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 1.5rem 2rem; }
 .footer .brand { display: flex; padding: 0; }
 .footer .brand-name { color: #fff; }
 .footer .brand-name small { color: #8e99ad; }
 .footer .mono-mark { background: #fff; color: var(--navy); }
-.f-grid h4 { font-family: var(--sans); font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; margin-bottom: .9rem; }
-.f-grid ul { display: grid; gap: .1rem; }
-.f-grid a { color: #b9c2d2; font-size: .95rem; padding: .2rem 0; display: inline-block; }
+.f-grid h4 { font-family: var(--sans); font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; margin-bottom: .55rem; }
+.f-grid ul { display: grid; gap: 0; }
+.f-grid a { color: #b9c2d2; font-size: .95rem; padding: .1rem 0; display: inline-block; }
 .f-grid a:hover { color: #fff; }
-.f-grid p { color: #9aa5b8; font-size: .95rem; max-width: 330px; margin: .9rem 0 1.1rem; }
-.f-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding: 1.4rem 0; border-top: 1px solid rgba(255, 255, 255, .12); font-size: .85rem; color: #8e99ad; }
+.f-grid p { color: #9aa5b8; font-size: .93rem; line-height: 1.55; max-width: 330px; margin: .6rem 0 .8rem; }
+.f-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding: .9rem 0; border-top: 1px solid rgba(255, 255, 255, .12); font-size: .85rem; color: #8e99ad; }
 .f-bottom a { color: #b9c2d2; }
 .f-bottom .kbd { background: transparent; color: #b9c2d2; border-color: rgba(255, 255, 255, .25); }
 .local-time { font-size: .9rem; }
