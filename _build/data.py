@@ -216,6 +216,7 @@ GALLERY = [
     ("deans", "Dean's Award", "Receiving the Dean's Award at the University of Dhaka."),
     ("provost", "Provost Award of Academic Excellence", "Receiving the Provost Award of Academic Excellence at the University of Dhaka."),
     ("dumerit", "Meritorious Students' Reception", "With the top students of two batches at the University of Dhaka's reception for meritorious students, held at the Vice-Chancellor's residence in December 2022."),
+    ("dugrad", "Graduation Day", "Graduation day with his batchmates at the University of Dhaka, in front of the Aparajeyo Bangla sculpture."),
     ("iikm3", "International Conference Presentation", "Presenters' photo session at the International Conference on Information and Knowledge Management (IIKM)."),
     ("national2", "Training Presentation Award", "Receiving the Training Presentation Award and prize at the Bangladesh National Archives and Library."),
     ("national", "Modern Library Management Training", "With fellow participants at the National Library of Bangladesh during the Modern Library Management training."),
