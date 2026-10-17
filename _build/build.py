@@ -2,9 +2,16 @@
 """Builds the 8 pages + script.js of litonali.com from data.py.
 Run from anywhere:  python _build/build.py   (Python 3.8+)
 """
-import json, os, re, shutil
+import json, os, re, shutil, hashlib
 from html import escape as e
 from data import *
+
+def _ver():
+    h = hashlib.md5()
+    for f in ("style.css", "script.src.js", "data.py", "build.py"):
+        h.update(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f), "rb").read().replace(b"\r\n", b"\n"))
+    return h.hexdigest()[:8]
+VER = _ver()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("SITE_OUT") or os.path.dirname(HERE)
@@ -118,7 +125,7 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
 <link href="{fa}" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=__VER__">
 {extra}</head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -158,7 +165,7 @@ def layout(file, title, desc, body, cta=True, extra_head=""):
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="script.js" defer></script>
+<script src="script.js?v=__VER__" defer></script>
 </body>
 </html>
 """.format(full=e(full), desc=e(desc), url=url, site=SITE, fonts=FONTS, fa=FA, extra=extra_head, nav=nav, ov=ov,
@@ -697,7 +704,7 @@ if __name__ == "__main__":
     pages = {"index.html": home, "about.html": about, "research.html": research, "experience.html": experience,
              "honors.html": honors, "service.html": service, "cv.html": cv, "contact.html": contact}
     for f, fn in pages.items():
-        open(os.path.join(OUT, f), "w", encoding="utf-8").write(fn())
+        open(os.path.join(OUT, f), "w", encoding="utf-8").write(fn().replace("__VER__", VER))
     js = open(os.path.join(HERE, "script.src.js"), encoding="utf-8").read()
     js = re.sub(r"/\*INDEX\*/.*?/\*END\*/", lambda m: json.dumps(search_index(), ensure_ascii=False), js, flags=re.S)
     js = re.sub(r"/\*PUBS\*/.*?/\*ENDPUBS\*/", lambda m: json.dumps(pubdata(), ensure_ascii=False), js, flags=re.S)
@@ -705,5 +712,5 @@ if __name__ == "__main__":
     open(os.path.join(OUT, "script.js"), "w", encoding="utf-8").write(js)
     shutil.copy(os.path.join(HERE, "style.css"), os.path.join(OUT, "style.css"))
     open(os.path.join(OUT, "favicon.svg"), "w", encoding="utf-8").write(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c83ff"/><stop offset=".5" stop-color="#5ee7ff"/><stop offset="1" stop-color="#c3f53c"/></linearGradient></defs><circle cx="32" cy="32" r="30" fill="url(#g)"/><circle cx="32" cy="32" r="27" fill="#07080d"/><text x="32" y="43" font-family="Georgia,serif" font-style="italic" font-size="32" fill="#fff" text-anchor="middle">L</text></svg>')
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#1c2b45"/><text x="32" y="43" font-family="Georgia,serif" font-size="32" fill="#fff" text-anchor="middle">L</text></svg>')
     print("Built 8 pages + script.js + style.css into", OUT)
