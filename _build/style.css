@@ -462,10 +462,10 @@ a.box:hover { border-color: var(--navy); }
 .role p { color: var(--text-2); }
 .role.lead { border-top: 3px solid var(--navy); }
 @media (max-width: 900px) { .roles { grid-template-columns: 1fr; } }
-.orgs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 2.5rem; border-top: 1px solid var(--line-2); }
-.org { display: grid; grid-template-columns: 76px 1fr; gap: 1.2rem; align-items: center; padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
-.org .ab { width: 76px; height: 76px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--navy); text-align: center; padding: .3rem; line-height: 1.1; }
-.org .ab--img { padding: .55rem; }
+.orgs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 2.5rem; }
+.org { display: grid; grid-template-columns: 88px 1fr; gap: 1.2rem; align-items: center; padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.org .ab { width: 88px; height: 88px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--navy); text-align: center; padding: .3rem; line-height: 1.1; }
+.org .ab--img { padding: .5rem; }
 .org .ab--img img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .org .nm { color: var(--text-2); font-size: .98rem; line-height: 1.4; }
 .org .nm strong { display: block; font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--navy); }
