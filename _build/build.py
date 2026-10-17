@@ -606,22 +606,19 @@ def cv():
 
 # ---------------------------------------------------------------- CONTACT
 def contact():
-    topics = ["Research collaboration", "Speaking or workshop", "Library automation", "Student inquiry", "Other"]
-    tp = "".join('<label><input type="checkbox" name="topic" value="%s"><span>%s</span></label>' % (e(t), e(t)) for t in topics)
     body = """
 {hero}
-<section class="sec"><div class="wrap contact">
-  <div>
-    <span class="eyebrow rv">Direct lines</span>
-    <div class="rv" style="margin-top:1.4rem">
+<section class="sec sec--tight"><div class="wrap contact">
+  <div class="c-info rv">
+    <h2>Direct lines</h2><p>Email is the quickest way to reach me.</p>
+    <div class="c-lines">
       <div class="c-line"><div><small>Email</small><a href="mailto:{email}">{email}</a></div><button class="copy" type="button" data-copy="{email}" aria-label="Copy email">{cp}</button></div>
-      <div class="c-line"><div><small>Phone · text only</small><span class="v">{phone}</span></div><button class="copy" type="button" data-copy="{phone}" aria-label="Copy phone number">{cp}</button></div>
       <div class="c-line"><div><small>Based at</small><span class="v">College of Information Science, University of Arizona, Tucson</span></div><span></span></div>
       <div class="c-line"><div><small>Local time</small><span class="v" data-localtime></span></div><span></span></div>
     </div>
-    <div class="rv" style="margin-top:2rem">{soc}</div>
+    <div class="c-soc">{soc}</div>
   </div>
-  <div class="spot form rv" style="--d:.1s">
+  <div class="form rv">
     <h2>Send a message</h2><p>I usually reply within a few days.</p>
     <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <input type="hidden" name="access_key" value="b020e433-b628-494b-9d45-953abae2e075"><input type="hidden" name="from_name" value="Portfolio Contact Form">
@@ -631,7 +628,6 @@ def contact():
         <div class="fg"><input id="email" name="email" type="email" autocomplete="email" placeholder=" " required><label for="email">Email *</label><span class="err">Please enter a valid email.</span></div>
         <div class="fg"><input id="organization" name="organization" type="text" autocomplete="organization" placeholder=" "><label for="organization">Organization</label></div>
         <div class="fg"><input id="subject" name="subject" type="text" placeholder=" " required><label for="subject">Subject *</label><span class="err">Please add a subject.</span></div>
-        <fieldset class="fg full"><legend class="sr-only">Topic</legend><div class="topics">{tp}</div></fieldset>
         <div class="fg full"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message">Your message *</label><span class="err">Please write a message.</span></div>
       </div>
       <div class="f-foot"><small>* required</small><button class="btn" type="submit">Send message {arr}</button></div>
@@ -640,7 +636,7 @@ def contact():
   </div>
 </div></section>
 """.format(hero=phero("Contact", "Get in touch", "Let's start a <em>conversation</em>.", "A research idea, a library that needs to go digital, or a question about my work. I'd love to hear from you."),
-           email=EMAIL, phone=PHONE, cp=ic("far fa-copy"), soc=soc(), tp=tp, arr=arrow())
+           email=EMAIL, cp=ic("far fa-copy"), soc=soc(), arr=arrow())
     return layout("contact.html", "Contact", "Contact Md Liton Ali for research collaboration, talks or library digitization projects.", body, cta=False)
 
 
